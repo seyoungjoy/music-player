@@ -5,7 +5,7 @@ import { Audio } from '../hooks/useAudio';
 import { formatTime } from '../utils';
 
 const S = {
-  MusicPlayerWrapper: styled.div`
+  MusicPlayerWrapper: styled.div<{ visible: boolean }>`
     position: fixed;
     bottom: 0;
     left: 0;
@@ -13,6 +13,9 @@ const S = {
     height: 80px;
     background-color: #ffffff;
     border-top: 1px solid #000;
+    transform: ${(props) =>
+      props.visible ? 'translate3D(0,0,0)' : 'translate3D(0,100%,0)'};
+    transition: transform 200ms ease;
   `,
   MusicPlayerControl: styled.div`
     max-width: 1020px;
@@ -40,7 +43,7 @@ type Props = {
 };
 const MusicPlayer = ({ audioState }: Props) => {
   return (
-    <S.MusicPlayerWrapper>
+    <S.MusicPlayerWrapper visible={audioState.playerVisible}>
       <S.MusicPlayerControl>
         <PlayToggleButton
           isPlaying={audioState.playing}

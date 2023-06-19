@@ -18,14 +18,21 @@ export type Audio = {
   handlePauseClick?: () => void;
   currentTime: number;
   handleRangeChange?: ChangeEventHandler;
+  playerVisible: boolean;
 };
 
 const useAudio = () => {
+  const [playerVisible, setPlayerVisible] = useState(false);
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [music, setMusic] = useState({ id: '', title: '' });
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+
+  const playerInit = () => {
+    if (playerVisible) return;
+    setPlayerVisible(true);
+  };
 
   const play = () => {
     audioRef.current?.play();
@@ -52,7 +59,11 @@ const useAudio = () => {
   };
 
   const handleItemToggleClick = async (musicId: string, title: string) => {
-    stop();
+    playerInit();
+
+    if (loading) return;
+
+    setPlaying(false);
     setMusic({ id: musicId, title: title });
     setLoading(true);
     const data = await fetchMusic(musicId);
@@ -91,6 +102,7 @@ const useAudio = () => {
     handlePauseClick,
     currentTime,
     handleRangeChange,
+    playerVisible,
   };
 };
 
