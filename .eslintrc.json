@@ -46,7 +46,7 @@
             "group": "internal"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["src/**", "@MyDesignSystem/**"],
+        "pathGroupsExcludedImportTypes": ["src/**"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
