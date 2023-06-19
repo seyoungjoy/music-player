@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import createMockServer from './mockServer/createMockServer';
 
+import './styles/index.css';
+
 // 수정 및 삭제 금지
 createMockServer();
 
