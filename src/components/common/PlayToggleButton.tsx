@@ -1,31 +1,29 @@
+import React from 'react';
+
+import PlayIcon from '../../assets/images/ic-small-fill-play-gray.png';
+import PauseIcon from '../../assets/images/ic-small-line-stop-gray.png';
+
 import { S } from './PlayToggleButton.styled';
 import Spin from './Spin';
 
 type Props = {
-  isPlaying: boolean;
-  onClick: () => void;
+  playing: boolean;
   loading?: boolean;
+  onClick: () => void;
 };
 
-const PlayToggleButton = ({ isPlaying, onClick, loading }: Props) => {
+const PlayToggleButton = ({ playing, onClick, loading }: Props) => {
   if (loading) {
     return <Spin />;
   }
-  const handleClick = () => {
-    onClick();
-  };
 
-  const buttonImg = isPlaying ? (
-    <img src="/images/ic-small-line-stop-gray.png" alt="정지" />
-  ) : (
-    <img src="/images/ic-small-fill-play-gray.png" alt="재생" />
-  );
-
+  const imgSrc = playing ? PauseIcon : PlayIcon;
+  const imgAlt = playing ? '정지' : '재생';
   return (
-    <S.Button type="button" onClick={handleClick}>
-      {buttonImg}
+    <S.Button type="button" onClick={onClick}>
+      <img src={imgSrc} alt={imgAlt} />
     </S.Button>
   );
 };
 
-export default PlayToggleButton;
+export default React.memo(PlayToggleButton);

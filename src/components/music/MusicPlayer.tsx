@@ -21,7 +21,7 @@ const MusicPlayer = ({
     <S.MusicPlayerWrapper visible={playerVisible}>
       <S.MusicPlayerControl>
         <PlayToggleButton
-          isPlaying={playing}
+          playing={playing}
           onClick={handleToggleClick}
           loading={loading}
         />

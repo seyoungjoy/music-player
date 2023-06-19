@@ -32,42 +32,36 @@ const MusicItem = ({
   const { id, title, moods, genre, public_date } = item;
 
   const play = () => {
-    if (handlePlayToggleClick) {
-      handlePlayToggleClick(id, title);
-    }
+    handlePlayToggleClick?.(id, title);
   };
 
   const pause = () => {
-    if (handlePauseToggleClick) {
-      handlePauseToggleClick();
-    }
+    handlePauseToggleClick?.();
   };
-  const IS_CURRENT_MUSIC = id === currentMusic.id;
-  const IS_NOT_CURRENT_MUSIC = id !== currentMusic.id;
-  const btn = () => {
-    if (IS_NOT_CURRENT_MUSIC) {
-      return <PlayToggleButton isPlaying={false} onClick={play} />;
+
+  const CURRENT_MUSIC = id === currentMusic.id;
+  const renderToggleButton = () => {
+    if (!CURRENT_MUSIC) {
+      return <PlayToggleButton playing={false} onClick={play} />;
     }
 
-    if (IS_CURRENT_MUSIC) {
-      if (playing) {
-        return <PlayToggleButton isPlaying={playing} onClick={pause} />;
-      } else {
-        return (
-          <PlayToggleButton
-            isPlaying={playing}
-            onClick={play}
-            loading={loading}
-          />
-        );
-      }
+    if (CURRENT_MUSIC && playing) {
+      return <PlayToggleButton playing={playing} onClick={pause} />;
     }
+
+    if (CURRENT_MUSIC && !playing) {
+      return (
+        <PlayToggleButton playing={playing} onClick={play} loading={loading} />
+      );
+    }
+
+    return <PlayToggleButton playing={false} onClick={play} />;
   };
 
   return (
     <S.MusicItem>
       <S.Row>
-        {btn()}
+        {renderToggleButton()}
         <S.MusicItemTitle>{title}</S.MusicItemTitle>
       </S.Row>
       <S.Row>
