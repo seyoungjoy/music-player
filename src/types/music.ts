@@ -5,12 +5,3 @@ export type Music = {
   genre: string;
   public_date: string;
 };
-
-export type MusicsResponse = {
-  total: number;
-  items: Music[];
-};
-
-export type MusicURLResponse = {
-  url: string;
-};

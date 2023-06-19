@@ -1,14 +1,30 @@
-import httpRequest from '../apiClient/httpRequest';
-import { MusicsResponse, MusicURLResponse } from '../types/music';
+import { Music } from '../types/music';
 
-export const fetchMusicList = async (): Promise<MusicsResponse> =>
-  await httpRequest({
+import httpRequest from './httpRequest';
+
+export type MusicsResponse = {
+  total: number;
+  items: Music[];
+};
+
+export type MusicURLResponse = {
+  url: string;
+};
+
+export const fetchMusicList = async (): Promise<MusicsResponse> => {
+  const { data } = await httpRequest({
     url: '/musics',
     method: 'GET',
-  }).then(({ data }) => data);
+  });
+  return data;
+};
 
-export const fetchMusic = async (payload?: string): Promise<MusicURLResponse> =>
-  await httpRequest({
+export const fetchMusicUrl = async (
+  payload?: string,
+): Promise<MusicURLResponse> => {
+  const { data } = await httpRequest({
     url: `/musics/${payload}`,
     method: 'GET',
-  }).then(({ data }) => data);
+  });
+  return data;
+};

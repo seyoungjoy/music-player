@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { fetchMusicList } from '../services';
-import { MusicsResponse } from '../types/music';
+import { MusicsResponse } from '../services';
 
 import { queryKeys } from './constant/query';
 

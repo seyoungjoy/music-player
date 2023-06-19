@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 
-import { fetchMusic } from '../services';
+import { fetchMusicUrl } from '../services';
 
 export type Audio = {
   audioRef: RefObject<HTMLAudioElement>;
@@ -70,7 +70,7 @@ const useAudio = () => {
       setPlaying(false);
       setMusic({ id: musicId, title: title });
       setLoading(true);
-      const data = await fetchMusic(musicId);
+      const data = await fetchMusicUrl(musicId);
       loadAudioSrc(data.url);
       setLoading(false);
       play();
