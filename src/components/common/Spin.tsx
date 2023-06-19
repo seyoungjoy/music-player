@@ -1,15 +1,7 @@
-import React from 'react';
-
-type Props = {
-  loading: boolean;
-};
-const Spin = ({ loading }: Props) => {
+const Spin = () => {
   return (
-    <div
-      className="loadingio-spinner-spinner-pqrczo57grl"
-      style={{ display: loading ? 'block' : 'none' }}
-    >
-      <div className="ldio-y4l88lhde3">
+    <div className="loadingio-spinner-spinner">
+      <div className="ldio">
         <div></div>
         <div></div>
         <div></div>

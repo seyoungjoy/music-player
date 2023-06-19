@@ -8,11 +8,11 @@ const Main = () => {
   const { data, isLoading, error } = useMusic();
   const audioState = useAudio();
   const {
-    handlePlayToggleClick,
-    handlePauseToggleClick,
-    currentMusic,
     playing,
     loading,
+    currentMusic,
+    handlePlayToggleClick,
+    handlePauseToggleClick,
   } = audioState;
 
   if (!data || isLoading) {

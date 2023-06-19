@@ -14,12 +14,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "import",
-    "json-format"
-  ],
+  "plugins": ["@typescript-eslint", "react", "import", "json-format"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "import/order": [
@@ -27,10 +22,7 @@
       {
         "newlines-between": "always",
         "groups": [
-          [
-            "builtin",
-            "external"
-          ],
+          ["builtin", "external"],
           "internal",
           "parent",
           "sibling",
@@ -54,9 +46,7 @@
             "group": "internal"
           }
         ],
-        "pathGroupsExcludedImportTypes": [
-          "src/**"
-        ],
+        "pathGroupsExcludedImportTypes": ["src/**"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true

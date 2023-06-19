@@ -9,7 +9,7 @@ type Props = {
 
 const PlayToggleButton = ({ isPlaying, onClick, loading }: Props) => {
   if (loading) {
-    return <Spin loading={true} />;
+    return <Spin />;
   }
   const handleClick = () => {
     onClick();
