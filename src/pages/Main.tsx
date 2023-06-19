@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
+
 import { MusicList, MusicPlayer, Title } from '../components';
-import useMusic from '../hooks/useMusic';
-import useAudio from '../hooks/useAudio';
+import { useAudio, useMusic } from '../hooks';
 
 const S = {
   Main: styled.div`

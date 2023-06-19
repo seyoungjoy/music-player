@@ -1,8 +1,9 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import PlayToggleButton from './PlayToggleButton';
-import { Music } from '../types/music';
+
 import { Audio } from '../hooks/useAudio';
+import { Music } from '../types/music';
+
+import PlayToggleButton from './PlayToggleButton';
 
 const S = {
   MusicItem: styled.li`

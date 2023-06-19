@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import PlayToggleButton from './PlayToggleButton';
-import { HiddenLabel } from '../styles/common/common';
+
 import { Audio } from '../hooks/useAudio';
+import { HiddenLabel } from '../styles/common/common';
 import { formatTime } from '../utils';
+
+import PlayToggleButton from './PlayToggleButton';
 
 const S = {
   MusicPlayerWrapper: styled.div<{ visible: boolean }>`

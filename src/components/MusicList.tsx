@@ -1,7 +1,9 @@
-import MusicItem from './MusicItem';
 import styled from '@emotion/styled';
-import { Music } from '../types/music';
+
 import { Audio } from '../hooks/useAudio';
+import { Music } from '../types/music';
+
+import MusicItem from './MusicItem';
 
 const S = {
   MusicList: styled.div`

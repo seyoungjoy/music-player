@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+
 import useAudio from '../hooks/useAudio';
+
 import Spin from './Spin';
 
 type Props = {
