@@ -1,15 +1,7 @@
-import styled from '@emotion/styled';
-
 import { MusicList, MusicPlayer, Title } from '../components';
 import { useAudio, useMusic } from '../hooks';
 
-const S = {
-  Main: styled.div`
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 20px 80px;
-  `,
-};
+import { S } from './Main.styled';
 
 const Main = () => {
   const { data, isLoading, error } = useMusic();
@@ -24,11 +16,11 @@ const Main = () => {
   }
 
   return (
-    <S.Main>
+    <S.Container>
       <Title />
       <MusicList items={data.items} audioState={audioState} />
       <MusicPlayer audioState={audioState} />
-    </S.Main>
+    </S.Container>
   );
 };
 

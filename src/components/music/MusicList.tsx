@@ -1,22 +1,14 @@
-import styled from '@emotion/styled';
-
-import { Audio } from '../hooks/useAudio';
-import { Music } from '../types/music';
+import { Audio } from '../../hooks/useAudio';
+import { Music } from '../../types/music';
 
 import MusicItem from './MusicItem';
-
-const S = {
-  MusicList: styled.div`
-    display: grid;
-    gap: 15px;
-    margin: 20px 0;
-  `,
-};
+import { S } from './MusicList.styled';
 
 type Props = {
   items: Music[];
   audioState: Audio;
 };
+
 const MusicList = ({ items, audioState }: Props) => {
   return (
     <S.MusicList>

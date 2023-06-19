@@ -1,48 +1,9 @@
-import styled from '@emotion/styled';
+import { Audio } from '../../hooks/useAudio';
+import { Music } from '../../types/music';
+import { PlayToggleButton } from '../index';
 
-import { Audio } from '../hooks/useAudio';
-import { Music } from '../types/music';
+import { S } from './MusicItem.styled';
 
-import PlayToggleButton from './PlayToggleButton';
-
-const S = {
-  MusicItem: styled.li`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    color: #000;
-  `,
-  MusicItemPlayToggle: styled.div`
-    position: relative;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    & > img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate3d(-50%, -50%, 0);
-      height: 80%;
-    }
-  `,
-  MusicItemTitle: styled.span`
-    margin-left: 20px;
-  `,
-  MusicItemMood: styled.span``,
-  MusicItemGenre: styled.span`
-    margin-left: 30px;
-  `,
-  MusicItemDate: styled.span`
-    margin-left: 30px;
-  `,
-  Row: styled.div`
-    display: flex;
-    align-items: center;
-  `,
-};
 type Props = {
   item: Music;
   audioState: Audio;

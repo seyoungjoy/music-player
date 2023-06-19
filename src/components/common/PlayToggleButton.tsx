@@ -1,7 +1,4 @@
-import styled from '@emotion/styled';
-
-import useAudio from '../hooks/useAudio';
-
+import { S } from './PlayToggleButton.styled';
 import Spin from './Spin';
 
 type Props = {
@@ -10,21 +7,6 @@ type Props = {
   loading?: boolean;
 };
 
-const S = {
-  Button: styled.button`
-    position: relative;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    & > img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate3d(-50%, -50%, 0);
-      height: 80%;
-    }
-  `,
-};
 const PlayToggleButton = ({ isPlaying, onClick, loading }: Props) => {
   if (loading) {
     return <Spin loading={true} />;
