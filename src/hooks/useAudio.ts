@@ -1,4 +1,11 @@
-import { RefObject, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { fetchMusic } from '../services';
 
 export type Audio = {
@@ -9,6 +16,8 @@ export type Audio = {
   loading: boolean;
   music: { id: string; title: string };
   handlePauseClick?: () => void;
+  currentTime: number;
+  handleRangeChange?: ChangeEventHandler;
 };
 
 const useAudio = () => {
@@ -16,6 +25,7 @@ const useAudio = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [music, setMusic] = useState({ id: '', title: '' });
   const [loading, setLoading] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const play = () => {
     audioRef.current?.play();
@@ -52,10 +62,25 @@ const useAudio = () => {
   };
 
   const handlePauseClick = () => {
-    console.log('hi');
     stop();
   };
 
+  const handleRangeChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (audioRef.current) {
+      setCurrentTime(Number(e.target.value));
+      audioRef.current.currentTime = Number(e.target.value);
+    }
+  };
+
+  useEffect(() => {
+    if (playing) {
+      const interval = setInterval(() => {
+        setCurrentTime(audioRef.current?.currentTime ?? 0);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [playing]);
   return {
     loading,
     playing,
@@ -64,6 +89,8 @@ const useAudio = () => {
     handleItemToggleClick,
     music,
     handlePauseClick,
+    currentTime,
+    handleRangeChange,
   };
 };
 

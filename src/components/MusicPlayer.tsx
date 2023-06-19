@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import PlayToggleButton from './PlayToggleButton';
 import { HiddenLabel } from '../styles/common/common';
 import { Audio } from '../hooks/useAudio';
+import { formatTime } from '../utils';
 
 const S = {
   MusicPlayerWrapper: styled.div`
@@ -50,12 +51,23 @@ const MusicPlayer = ({ audioState }: Props) => {
         <S.MusicPlayerTitle>타이틀</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
-          <S.MusicPlayerCurrentTime>00:00</S.MusicPlayerCurrentTime>
+          <S.MusicPlayerCurrentTime>
+            {formatTime(audioState.audioRef.current?.currentTime)}
+          </S.MusicPlayerCurrentTime>
+
           <S.MusicPlayerSlider>
             <HiddenLabel htmlFor="range">progress bar</HiddenLabel>
-            <input type="range" id="range" />
+            <input
+              type="range"
+              id="range"
+              max={audioState.audioRef.current?.duration}
+              value={audioState.currentTime}
+              onChange={audioState.handleRangeChange}
+            />
           </S.MusicPlayerSlider>
-          <S.MusicPlayerDuration>00:00</S.MusicPlayerDuration>
+          <S.MusicPlayerDuration>
+            {formatTime(audioState.audioRef.current?.duration)}
+          </S.MusicPlayerDuration>
         </S.MusicPlayerProgressBar>
 
         <audio
