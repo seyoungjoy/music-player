@@ -32,17 +32,19 @@ const MusicItem = ({
   const { id, title, moods, genre, public_date } = item;
 
   const play = () => {
-    handlePlayToggleClick?.(id, title);
+    handlePlayToggleClick(id, title);
   };
 
   const pause = () => {
-    handlePauseToggleClick?.();
+    handlePauseToggleClick();
   };
 
   const CURRENT_MUSIC = id === currentMusic.id;
   const renderToggleButton = () => {
     if (!CURRENT_MUSIC) {
-      return <PlayToggleButton playing={false} onClick={play} />;
+      return (
+        <PlayToggleButton playing={false} onClick={play} disabled={loading} />
+      );
     }
 
     if (CURRENT_MUSIC && playing) {

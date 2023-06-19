@@ -18,9 +18,9 @@ export type Audio = {
   currentMusic: CurrentMusic;
   currentTime: number;
   handleToggleClick: () => void;
-  handleRangeChange?: ChangeEventHandler;
-  handlePlayToggleClick?: (musicId: string, title: string) => void;
-  handlePauseToggleClick?: () => void;
+  handleRangeChange: ChangeEventHandler;
+  handlePlayToggleClick: (musicId: string, title: string) => void;
+  handlePauseToggleClick: () => void;
 };
 
 type CurrentMusic = {
@@ -68,7 +68,10 @@ const useAudio = () => {
     async (musicId: string, musicTitle: string) => {
       playerInit();
 
-      if (loading) return;
+      if (loading) {
+        console.log(loading);
+        return;
+      }
 
       try {
         setLoading(true);

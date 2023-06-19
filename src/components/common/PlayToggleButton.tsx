@@ -10,9 +10,10 @@ type Props = {
   playing: boolean;
   loading?: boolean;
   onClick: () => void;
+  disabled?: boolean;
 };
 
-const PlayToggleButton = ({ playing, onClick, loading }: Props) => {
+const PlayToggleButton = ({ playing, onClick, loading, disabled }: Props) => {
   if (loading) {
     return <Spin />;
   }
@@ -20,7 +21,7 @@ const PlayToggleButton = ({ playing, onClick, loading }: Props) => {
   const imgSrc = playing ? PauseIcon : PlayIcon;
   const imgAlt = playing ? '정지' : '재생';
   return (
-    <S.Button type="button" onClick={onClick}>
+    <S.Button type="button" onClick={onClick} disabled={disabled ?? false}>
       <img src={imgSrc} alt={imgAlt} />
     </S.Button>
   );
