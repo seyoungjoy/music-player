@@ -68,11 +68,6 @@ const useAudio = () => {
     async (musicId: string, musicTitle: string) => {
       playerInit();
 
-      if (loading) {
-        console.log(loading);
-        return;
-      }
-
       try {
         setLoading(true);
         setPlaying(false);
