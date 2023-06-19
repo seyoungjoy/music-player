@@ -14,20 +14,20 @@ type MusicItem = {
 
 type AudioItem = Pick<
   Audio,
-  | 'handlePlayToggleClick'
-  | 'handlePauseToggleClick'
-  | 'currentMusic'
   | 'playing'
   | 'loading'
+  | 'currentMusic'
+  | 'handlePlayToggleClick'
+  | 'handlePauseToggleClick'
 >;
 
 const MusicItem = ({
   item,
-  handlePlayToggleClick,
-  handlePauseToggleClick,
-  currentMusic,
   playing,
   loading,
+  currentMusic,
+  handlePlayToggleClick,
+  handlePauseToggleClick,
 }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 

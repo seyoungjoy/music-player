@@ -77,7 +77,7 @@ const useAudio = () => {
         setLoading(false);
         play();
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     },
     [],

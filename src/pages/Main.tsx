@@ -1,5 +1,4 @@
-import { MusicList, MusicPlayer, Title } from '../components';
-import MusicItem from '../components/music/MusicItem';
+import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
 import { useAudio, useMusic } from '../hooks';
 
 import { S } from './Main.styled';
@@ -20,7 +19,7 @@ const Main = () => {
   }
 
   if (error) {
-    return <div>error...</div>;
+    return <div>error</div>;
   }
 
   return (
@@ -34,8 +33,8 @@ const Main = () => {
             playing={playing}
             loading={loading}
             currentMusic={currentMusic}
-            handlePauseToggleClick={handlePauseToggleClick}
             handlePlayToggleClick={handlePlayToggleClick}
+            handlePauseToggleClick={handlePauseToggleClick}
           />
         ))}
       </MusicList>
