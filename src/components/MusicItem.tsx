@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import PlayToggleButton from './PlayToggleButton';
 import { Music } from '../types/music';
 import { Audio } from '../hooks/useAudio';
-import Spin from './Spin';
 
 const S = {
   MusicItem: styled.li`
@@ -51,37 +50,36 @@ type Props = {
 const MusicItem = ({ item, audioState }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
-  const test = () => {
+  const play = () => {
     if (audioState.handleItemToggleClick) {
       audioState.handleItemToggleClick(id, title);
     }
   };
-  const btn = () => {
-    if (!audioState.music.id) {
-      return (
-        <PlayToggleButton
-          isPlaying={audioState.playing}
-          onClick={test}
-          loading={audioState.loading}
-        />
-      );
-    }
-    if (id === audioState.music.id && audioState.playing) {
-      return (
-        <PlayToggleButton
-          isPlaying={audioState.playing}
-          onClick={test}
-          loading={audioState.loading}
-        />
-      );
-    }
 
-    return (
-      <PlayToggleButton
-        isPlaying={false}
-        onClick={() => audioState.handlePauseClick}
-      />
-    );
+  const pause = () => {
+    if (audioState.handlePauseClick) {
+      audioState.handlePauseClick();
+    }
+  };
+  const btn = () => {
+    if (id !== audioState.music.id) {
+      return <PlayToggleButton isPlaying={false} onClick={play} />;
+    }
+    if (id === audioState.music.id) {
+      if (audioState.playing) {
+        return (
+          <PlayToggleButton isPlaying={audioState.playing} onClick={pause} />
+        );
+      } else {
+        return (
+          <PlayToggleButton
+            isPlaying={audioState.playing}
+            onClick={play}
+            loading={audioState.loading}
+          />
+        );
+      }
+    }
   };
 
   return (

@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import PlayToggleButton from './PlayToggleButton';
 import { HiddenLabel } from '../styles/common/common';
-import { log } from 'util';
-import { useRef, useState } from 'react';
 import { Audio } from '../hooks/useAudio';
 
 const S = {
@@ -12,7 +10,8 @@ const S = {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: #c5c5c5;
+    background-color: #ffffff;
+    border-top: 1px solid #000;
   `,
   MusicPlayerControl: styled.div`
     max-width: 1020px;
@@ -45,6 +44,7 @@ const MusicPlayer = ({ audioState }: Props) => {
         <PlayToggleButton
           isPlaying={audioState.playing}
           onClick={audioState.handleToggleClick}
+          loading={audioState.loading}
         />
 
         <S.MusicPlayerTitle>타이틀</S.MusicPlayerTitle>

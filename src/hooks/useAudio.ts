@@ -1,7 +1,5 @@
 import { RefObject, useRef, useState } from 'react';
-import { useQuery, UseQueryResult } from 'react-query';
-import { fetchMusic, fetchMusicList } from '../services';
-import { MusicURLResponse } from '../types/music';
+import { fetchMusic } from '../services';
 
 export type Audio = {
   playing: boolean;
@@ -54,6 +52,7 @@ const useAudio = () => {
   };
 
   const handlePauseClick = () => {
+    console.log('hi');
     stop();
   };
 
