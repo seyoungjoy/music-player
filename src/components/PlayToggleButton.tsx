@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
+import useAudio from '../hooks/useAudio';
+import Spin from './Spin';
 
 type Props = {
   isPlaying: boolean;
+  onClick: () => void;
+  loading?: boolean;
 };
 
 const S = {
@@ -19,14 +23,25 @@ const S = {
     }
   `,
 };
-const PlayToggleButton = ({ isPlaying }: Props) => {
+const PlayToggleButton = ({ isPlaying, onClick, loading }: Props) => {
+  if (loading) {
+    return <Spin loading={true} />;
+  }
+  const handleClick = () => {
+    onClick();
+  };
+
   const buttonImg = isPlaying ? (
     <img src="/images/ic-small-line-stop-gray.png" alt="정지" />
   ) : (
     <img src="/images/ic-small-fill-play-gray.png" alt="재생" />
   );
 
-  return <S.Button type="button">{buttonImg}</S.Button>;
+  return (
+    <S.Button type="button" onClick={handleClick}>
+      {buttonImg}
+    </S.Button>
+  );
 };
 
 export default PlayToggleButton;

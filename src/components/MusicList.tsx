@@ -1,6 +1,7 @@
 import MusicItem from './MusicItem';
 import styled from '@emotion/styled';
 import { Music } from '../types/music';
+import { Audio } from '../hooks/useAudio';
 
 const S = {
   MusicList: styled.div`
@@ -12,12 +13,13 @@ const S = {
 
 type Props = {
   items: Music[];
+  audioState: Audio;
 };
-const MusicList = ({ items }: Props) => {
+const MusicList = ({ items, audioState }: Props) => {
   return (
     <S.MusicList>
       {items.map((item) => (
-        <MusicItem {...item} key={item.id} />
+        <MusicItem item={item} key={item.id} audioState={audioState} />
       ))}
     </S.MusicList>
   );

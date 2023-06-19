@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { MusicList, MusicPlayer, Title } from '../components';
-import { useQuery } from 'react-query';
-import axiosInstance from '../apiClient/axiosInstance';
-import { MusicsResponse } from '../types/music';
+import useMusic from '../hooks/useMusic';
+import useAudio from '../hooks/useAudio';
 
 const S = {
   Main: styled.div`
@@ -13,16 +12,22 @@ const S = {
 };
 
 const Main = () => {
-  const { isLoading, error, data } = useQuery<MusicsResponse>('musics', () =>
-    axiosInstance.get('/musics').then(({ data }) => data),
-  );
-  if (isLoading || !data) return <div>로딩중</div>;
-  if (error) return <div>에러</div>;
+  const { data, isLoading, error } = useMusic();
+  const audioState = useAudio();
+
+  if (!data || isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (error) {
+    return <div>error...</div>;
+  }
+
   return (
     <S.Main>
       <Title />
-      <MusicList items={data.items} />
-      <MusicPlayer />
+      <MusicList items={data.items} audioState={audioState} />
+      <MusicPlayer audioState={audioState} />
     </S.Main>
   );
 };

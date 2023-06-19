@@ -2,6 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PlayToggleButton from './PlayToggleButton';
 import { Music } from '../types/music';
+import { Audio } from '../hooks/useAudio';
+import Spin from './Spin';
+
 const S = {
   MusicItem: styled.li`
     display: flex;
@@ -40,13 +43,51 @@ const S = {
     align-items: center;
   `,
 };
-type Props = Music;
+type Props = {
+  item: Music;
+  audioState: Audio;
+};
 
-const MusicItem = ({ id, title, moods, genre, public_date }: Props) => {
+const MusicItem = ({ item, audioState }: Props) => {
+  const { id, title, moods, genre, public_date } = item;
+
+  const test = () => {
+    if (audioState.handleItemToggleClick) {
+      audioState.handleItemToggleClick(id, title);
+    }
+  };
+  const btn = () => {
+    if (!audioState.music.id) {
+      return (
+        <PlayToggleButton
+          isPlaying={audioState.playing}
+          onClick={test}
+          loading={audioState.loading}
+        />
+      );
+    }
+    if (id === audioState.music.id && audioState.playing) {
+      return (
+        <PlayToggleButton
+          isPlaying={audioState.playing}
+          onClick={test}
+          loading={audioState.loading}
+        />
+      );
+    }
+
+    return (
+      <PlayToggleButton
+        isPlaying={false}
+        onClick={() => audioState.handlePauseClick}
+      />
+    );
+  };
+
   return (
     <S.MusicItem>
       <S.Row>
-        <PlayToggleButton isPlaying={false} />
+        {btn()}
         <S.MusicItemTitle>{title}</S.MusicItemTitle>
       </S.Row>
       <S.Row>
