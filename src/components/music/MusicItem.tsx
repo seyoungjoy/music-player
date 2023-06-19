@@ -1,10 +1,13 @@
 import React from 'react';
+import uuid from 'react-uuid';
 
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
+import { formatDate } from '../../utils';
 import { PlayToggleButton } from '../index';
 
 import { S } from './MusicItem.styled';
+import MusicMood from './MusicMood';
 
 type Props = MusicItem & AudioItem;
 
@@ -67,9 +70,13 @@ const MusicItem = ({
         <S.MusicItemTitle>{title}</S.MusicItemTitle>
       </S.Row>
       <S.Row>
-        <S.MusicItemMood>{moods.map((mood) => '#' + mood)}</S.MusicItemMood>
+        <S.MusicItemMood>
+          {moods.map((mood) => (
+            <MusicMood key={uuid()} mood={mood} />
+          ))}
+        </S.MusicItemMood>
         <S.MusicItemGenre>{genre}</S.MusicItemGenre>
-        <S.MusicItemDate>{public_date}</S.MusicItemDate>
+        <S.MusicItemDate>{formatDate(public_date)}</S.MusicItemDate>
       </S.Row>
     </S.MusicItem>
   );

@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 
+import { COLOR } from '../../constants/color';
+
 export const S = {
   MusicItem: styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    border: 1px solid #000;
+    padding: 15px 20px;
+    border: ${`1px solid ` + COLOR.BORDER};
     border-radius: 5px;
-    color: #000;
+    color: ${COLOR.DARK};
   `,
   MusicItemPlayToggle: styled.div`
     position: relative;
@@ -28,7 +30,10 @@ export const S = {
   `,
   MusicItemMood: styled.span``,
   MusicItemGenre: styled.span`
+    display: inline-block;
+    min-width: 80px;
     margin-left: 30px;
+    text-align: center;
   `,
   MusicItemDate: styled.span`
     margin-left: 30px;

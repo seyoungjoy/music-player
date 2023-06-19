@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { COLOR } from '../../constants/color';
+
 export const S = {
   MusicPlayerWrapper: styled.div<{ visible: boolean }>`
     position: fixed;
@@ -8,10 +10,11 @@ export const S = {
     width: 100%;
     height: 80px;
     background-color: #ffffff;
-    border-top: 1px solid #000;
+    border-top: ${`1px solid ` + COLOR.BORDER};
     transform: ${(props) =>
       props.visible ? 'translate3D(0,0,0)' : 'translate3D(0,100%,0)'};
     transition: transform 200ms ease;
+    color: ${COLOR.DARK};
   `,
   MusicPlayerControl: styled.div`
     max-width: 1020px;

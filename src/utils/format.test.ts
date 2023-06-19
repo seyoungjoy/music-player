@@ -1,4 +1,4 @@
-import { formatTime } from './time';
+import { formatTime } from './format';
 
 test('time', () => {
   expect(formatTime(70)).toBe('01:10');
