@@ -18,9 +18,10 @@ const S = {
     padding: 0 80px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
   `,
-  MusicPlayerTitle: styled.div``,
+  MusicPlayerTitle: styled.div`
+    margin: 0 40px;
+  `,
   MusicPlayerProgressBar: styled.div`
     display: flex;
     align-items: center;

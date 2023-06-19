@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PlayToggleButton from './PlayToggleButton';
+import { Music } from '../types/music';
 const S = {
   MusicItem: styled.li`
     display: flex;
@@ -39,18 +40,19 @@ const S = {
     align-items: center;
   `,
 };
+type Props = Music;
 
-const MusicItem = () => {
+const MusicItem = ({ id, title, moods, genre, public_date }: Props) => {
   return (
     <S.MusicItem>
       <S.Row>
         <PlayToggleButton isPlaying={false} />
-        <S.MusicItemTitle>Happy Days</S.MusicItemTitle>
+        <S.MusicItemTitle>{title}</S.MusicItemTitle>
       </S.Row>
       <S.Row>
-        <S.MusicItemMood>#즐거운 #행복한</S.MusicItemMood>
-        <S.MusicItemGenre>#재즈</S.MusicItemGenre>
-        <S.MusicItemDate>2022.11.11</S.MusicItemDate>
+        <S.MusicItemMood>{moods.map((mood) => '#' + mood)}</S.MusicItemMood>
+        <S.MusicItemGenre>{genre}</S.MusicItemGenre>
+        <S.MusicItemDate>{public_date}</S.MusicItemDate>
       </S.Row>
     </S.MusicItem>
   );

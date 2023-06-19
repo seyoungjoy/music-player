@@ -1,5 +1,6 @@
 import MusicItem from './MusicItem';
 import styled from '@emotion/styled';
+import { Music } from '../types/music';
 
 const S = {
   MusicList: styled.div`
@@ -9,12 +10,15 @@ const S = {
   `,
 };
 
-const MusicList = () => {
+type Props = {
+  items: Music[];
+};
+const MusicList = ({ items }: Props) => {
   return (
     <S.MusicList>
-      <MusicItem />
-      <MusicItem />
-      <MusicItem />
+      {items.map((item) => (
+        <MusicItem {...item} key={item.id} />
+      ))}
     </S.MusicList>
   );
 };

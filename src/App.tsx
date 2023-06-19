@@ -1,23 +1,14 @@
-import { Title } from './components';
-import MusicList from './components/MusicList';
-import MusicPlayer from './components/MusicPlayer';
-import styled from '@emotion/styled';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-const S = {
-  App: styled.div`
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 20px 80px;
-  `,
-};
+import Main from './pages/Main';
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <S.App>
-      <Title />
-      <MusicList />
-      <MusicPlayer />
-    </S.App>
+    <QueryClientProvider client={queryClient}>
+      <Main />
+    </QueryClientProvider>
   );
 }
 
