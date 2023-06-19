@@ -48,7 +48,7 @@ const MusicPlayer = ({ audioState }: Props) => {
           loading={audioState.loading}
         />
 
-        <S.MusicPlayerTitle>타이틀</S.MusicPlayerTitle>
+        <S.MusicPlayerTitle>{audioState.music.title}</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>
