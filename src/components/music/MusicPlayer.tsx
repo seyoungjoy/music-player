@@ -5,25 +5,32 @@ import PlayToggleButton from '../common/PlayToggleButton';
 
 import { S } from './MusicPlayer.styled';
 
-type Props = {
-  audioState: Audio;
-};
+type Props = Audio;
 
-const MusicPlayer = ({ audioState }: Props) => {
+const MusicPlayer = ({
+  audioRef,
+  playerVisible,
+  playing,
+  loading,
+  music,
+  currentTime,
+  handleRangeChange,
+  handleToggleClick,
+}: Props) => {
   return (
-    <S.MusicPlayerWrapper visible={audioState.playerVisible}>
+    <S.MusicPlayerWrapper visible={playerVisible}>
       <S.MusicPlayerControl>
         <PlayToggleButton
-          isPlaying={audioState.playing}
-          onClick={audioState.handleToggleClick}
-          loading={audioState.loading}
+          isPlaying={playing}
+          onClick={handleToggleClick}
+          loading={loading}
         />
 
-        <S.MusicPlayerTitle>{audioState.music.title}</S.MusicPlayerTitle>
+        <S.MusicPlayerTitle>{music.title}</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>
-            {formatTime(audioState.audioRef.current?.currentTime)}
+            {formatTime(audioRef.current?.currentTime)}
           </S.MusicPlayerCurrentTime>
 
           <S.MusicPlayerSlider>
@@ -31,20 +38,17 @@ const MusicPlayer = ({ audioState }: Props) => {
             <input
               type="range"
               id="range"
-              max={audioState.audioRef.current?.duration}
-              value={audioState.currentTime}
-              onChange={audioState.handleRangeChange}
+              max={audioRef.current?.duration}
+              value={currentTime}
+              onChange={handleRangeChange}
             />
           </S.MusicPlayerSlider>
           <S.MusicPlayerDuration>
-            {formatTime(audioState.audioRef.current?.duration)}
+            {formatTime(audioRef.current?.duration)}
           </S.MusicPlayerDuration>
         </S.MusicPlayerProgressBar>
 
-        <audio
-          src="https://cdn.pozalabs.com/recruit/musics/0.mp3"
-          ref={audioState.audioRef}
-        />
+        <audio ref={audioRef} />
       </S.MusicPlayerControl>
     </S.MusicPlayerWrapper>
   );

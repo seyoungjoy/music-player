@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   ChangeEventHandler,
   RefObject,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -10,22 +11,23 @@ import {
 import { fetchMusic } from '../services';
 
 export type Audio = {
-  playing: boolean;
   audioRef: RefObject<HTMLAudioElement>;
-  handleToggleClick: () => void;
-  handleItemToggleClick?: (musicId: string, title: string) => void;
+  playerVisible: boolean;
+  playing: boolean;
   loading: boolean;
   music: { id: string; title: string };
-  handlePauseClick?: () => void;
   currentTime: number;
+  handleToggleClick: () => void;
   handleRangeChange?: ChangeEventHandler;
-  playerVisible: boolean;
+  handleItemToggleClick?: (musicId: string, title: string) => void;
+  handlePauseClick?: () => void;
 };
 
 const useAudio = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const [playerVisible, setPlayerVisible] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const [music, setMusic] = useState({ id: '', title: '' });
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -59,30 +61,36 @@ const useAudio = () => {
     }
   };
 
-  const handleItemToggleClick = async (musicId: string, title: string) => {
-    playerInit();
+  const handleItemToggleClick = useCallback(
+    async (musicId: string, title: string) => {
+      playerInit();
 
-    if (loading) return;
+      if (loading) return;
 
-    setPlaying(false);
-    setMusic({ id: musicId, title: title });
-    setLoading(true);
-    const data = await fetchMusic(musicId);
-    await loadAudioSrc(data.url);
-    setLoading(false);
-    play();
-  };
+      setPlaying(false);
+      setMusic({ id: musicId, title: title });
+      setLoading(true);
+      const data = await fetchMusic(musicId);
+      loadAudioSrc(data.url);
+      setLoading(false);
+      play();
+    },
+    [],
+  );
 
-  const handlePauseClick = () => {
+  const handlePauseClick = useCallback(() => {
     stop();
-  };
+  }, []);
 
-  const handleRangeChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (audioRef.current) {
-      setCurrentTime(Number(e.target.value));
-      audioRef.current.currentTime = Number(e.target.value);
-    }
-  };
+  const handleRangeChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): void => {
+      if (audioRef.current) {
+        setCurrentTime(Number(e.target.value));
+        audioRef.current.currentTime = Number(e.target.value);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (playing) {
@@ -93,17 +101,18 @@ const useAudio = () => {
       return () => clearInterval(interval);
     }
   }, [playing]);
+
   return {
-    loading,
-    playing,
     audioRef,
+    playerVisible,
+    playing,
+    loading,
+    music,
+    currentTime,
     handleToggleClick,
     handleItemToggleClick,
-    music,
     handlePauseClick,
-    currentTime,
     handleRangeChange,
-    playerVisible,
   };
 };
 

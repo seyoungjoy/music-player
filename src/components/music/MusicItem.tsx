@@ -1,43 +1,59 @@
+import React from 'react';
+
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
 import { PlayToggleButton } from '../index';
 
 import { S } from './MusicItem.styled';
 
-type Props = {
+type Props = MusicItem & AudioItem;
+
+type MusicItem = {
   item: Music;
-  audioState: Audio;
 };
 
-const MusicItem = ({ item, audioState }: Props) => {
+type AudioItem = Pick<
+  Audio,
+  'handleItemToggleClick' | 'handlePauseClick' | 'music' | 'playing' | 'loading'
+>;
+
+const MusicItem = ({
+  item,
+  handleItemToggleClick,
+  handlePauseClick,
+  music,
+  playing,
+  loading,
+}: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
   const play = () => {
-    if (audioState.handleItemToggleClick) {
-      audioState.handleItemToggleClick(id, title);
+    if (handleItemToggleClick) {
+      handleItemToggleClick(id, title);
     }
   };
 
   const pause = () => {
-    if (audioState.handlePauseClick) {
-      audioState.handlePauseClick();
+    if (handlePauseClick) {
+      handlePauseClick();
     }
   };
+  const IS_CURRENT_MUSIC = id === music.id;
+  const IS_NOT_CURRENT_MUSIC = id !== music.id;
   const btn = () => {
-    if (id !== audioState.music.id) {
+    if (IS_NOT_CURRENT_MUSIC) {
       return <PlayToggleButton isPlaying={false} onClick={play} />;
     }
-    if (id === audioState.music.id) {
-      if (audioState.playing) {
-        return (
-          <PlayToggleButton isPlaying={audioState.playing} onClick={pause} />
-        );
+
+    if (IS_CURRENT_MUSIC) {
+      if (playing) {
+        return <PlayToggleButton isPlaying={playing} onClick={pause} />;
       } else {
         return (
           <PlayToggleButton
-            isPlaying={audioState.playing}
+            isPlaying={playing}
             onClick={play}
-            loading={audioState.loading}
+            loading={loading}
           />
         );
       }
@@ -59,4 +75,4 @@ const MusicItem = ({ item, audioState }: Props) => {
   );
 };
 
-export default MusicItem;
+export default React.memo(MusicItem);
