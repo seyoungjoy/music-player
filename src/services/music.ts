@@ -1,9 +1,8 @@
 import httpRequest from '../apiClient/httpRequest';
-import { AxiosResponse } from 'axios';
-import { MusicURLResponse } from '../types/music';
+import { MusicsResponse, MusicURLResponse } from '../types/music';
 
-export const fetchMusicList = () =>
-  httpRequest({
+export const fetchMusicList = async (): Promise<MusicsResponse> =>
+  await httpRequest({
     url: '/musics',
     method: 'GET',
   }).then(({ data }) => data);
