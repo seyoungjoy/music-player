@@ -1,13 +1,23 @@
-import Title from './components/Title';
+import { Title } from './components';
+import MusicList from './components/MusicList';
+import MusicPlayer from './components/MusicPlayer';
+import styled from '@emotion/styled';
+
+const S = {
+  App: styled.div`
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 20px 80px;
+  `,
+};
 
 function App() {
-  // title
-  // musicList
-  // musicplayer
   return (
-    <div>
+    <S.App>
       <Title />
-    </div>
+      <MusicList />
+      <MusicPlayer />
+    </S.App>
   );
 }
 
