@@ -7,8 +7,13 @@ import { S } from './Main.styled';
 const Main = () => {
   const { data, isLoading, error } = useMusic();
   const audioState = useAudio();
-  const { handleItemToggleClick, handlePauseClick, music, playing, loading } =
-    audioState;
+  const {
+    handlePlayToggleClick,
+    handlePauseToggleClick,
+    currentMusic,
+    playing,
+    loading,
+  } = audioState;
 
   if (!data || isLoading) {
     return <div>loading...</div>;
@@ -28,9 +33,9 @@ const Main = () => {
             item={item}
             playing={playing}
             loading={loading}
-            music={music}
-            handlePauseClick={handlePauseClick}
-            handleItemToggleClick={handleItemToggleClick}
+            currentMusic={currentMusic}
+            handlePauseToggleClick={handlePauseToggleClick}
+            handlePlayToggleClick={handlePlayToggleClick}
           />
         ))}
       </MusicList>

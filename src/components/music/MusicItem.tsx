@@ -14,32 +14,36 @@ type MusicItem = {
 
 type AudioItem = Pick<
   Audio,
-  'handleItemToggleClick' | 'handlePauseClick' | 'music' | 'playing' | 'loading'
+  | 'handlePlayToggleClick'
+  | 'handlePauseToggleClick'
+  | 'currentMusic'
+  | 'playing'
+  | 'loading'
 >;
 
 const MusicItem = ({
   item,
-  handleItemToggleClick,
-  handlePauseClick,
-  music,
+  handlePlayToggleClick,
+  handlePauseToggleClick,
+  currentMusic,
   playing,
   loading,
 }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
   const play = () => {
-    if (handleItemToggleClick) {
-      handleItemToggleClick(id, title);
+    if (handlePlayToggleClick) {
+      handlePlayToggleClick(id, title);
     }
   };
 
   const pause = () => {
-    if (handlePauseClick) {
-      handlePauseClick();
+    if (handlePauseToggleClick) {
+      handlePauseToggleClick();
     }
   };
-  const IS_CURRENT_MUSIC = id === music.id;
-  const IS_NOT_CURRENT_MUSIC = id !== music.id;
+  const IS_CURRENT_MUSIC = id === currentMusic.id;
+  const IS_NOT_CURRENT_MUSIC = id !== currentMusic.id;
   const btn = () => {
     if (IS_NOT_CURRENT_MUSIC) {
       return <PlayToggleButton isPlaying={false} onClick={play} />;

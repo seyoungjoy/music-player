@@ -12,7 +12,7 @@ const MusicPlayer = ({
   playerVisible,
   playing,
   loading,
-  music,
+  currentMusic,
   currentTime,
   handleRangeChange,
   handleToggleClick,
@@ -26,7 +26,7 @@ const MusicPlayer = ({
           loading={loading}
         />
 
-        <S.MusicPlayerTitle>{music.title}</S.MusicPlayerTitle>
+        <S.MusicPlayerTitle>{currentMusic.title}</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>

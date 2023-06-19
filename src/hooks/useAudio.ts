@@ -15,12 +15,17 @@ export type Audio = {
   playerVisible: boolean;
   playing: boolean;
   loading: boolean;
-  music: { id: string; title: string };
+  currentMusic: CurrentMusic;
   currentTime: number;
   handleToggleClick: () => void;
   handleRangeChange?: ChangeEventHandler;
-  handleItemToggleClick?: (musicId: string, title: string) => void;
-  handlePauseClick?: () => void;
+  handlePlayToggleClick?: (musicId: string, title: string) => void;
+  handlePauseToggleClick?: () => void;
+};
+
+type CurrentMusic = {
+  id: string;
+  title: string;
 };
 
 const useAudio = () => {
@@ -28,7 +33,10 @@ const useAudio = () => {
 
   const [playerVisible, setPlayerVisible] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [music, setMusic] = useState({ id: '', title: '' });
+  const [currentMusic, setCurrentMusic] = useState<CurrentMusic>({
+    id: '',
+    title: '',
+  });
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -42,55 +50,52 @@ const useAudio = () => {
     setPlaying(true);
   };
 
-  const stop = () => {
+  const pause = () => {
     audioRef.current?.pause();
     setPlaying(false);
   };
 
   const handleToggleClick = () => {
-    if (playing) {
-      stop();
-    } else {
-      play();
-    }
+    playing ? pause() : play();
   };
 
   const loadAudioSrc = (url: string) => {
-    if (audioRef.current) {
-      audioRef.current.src = url;
-    }
+    if (!audioRef.current) return;
+    audioRef.current.src = url;
   };
 
-  const handleItemToggleClick = useCallback(
-    async (musicId: string, title: string) => {
+  const handlePlayToggleClick = useCallback(
+    async (musicId: string, musicTitle: string) => {
       playerInit();
 
       if (loading) return;
 
-      setPlaying(false);
-      setMusic({ id: musicId, title: title });
-      setLoading(true);
-      const data = await fetchMusicUrl(musicId);
-      loadAudioSrc(data.url);
-      setLoading(false);
-      play();
-    },
-    [],
-  );
-
-  const handlePauseClick = useCallback(() => {
-    stop();
-  }, []);
-
-  const handleRangeChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>): void => {
-      if (audioRef.current) {
-        setCurrentTime(Number(e.target.value));
-        audioRef.current.currentTime = Number(e.target.value);
+      try {
+        setLoading(true);
+        setPlaying(false);
+        setCurrentMusic({ id: musicId, title: musicTitle });
+        const data = await fetchMusicUrl(musicId);
+        loadAudioSrc(data.url);
+        setLoading(false);
+        play();
+      } catch (error) {
+        alert(error);
       }
     },
     [],
   );
+
+  const handlePauseToggleClick = useCallback(() => {
+    pause();
+  }, []);
+
+  const handleRangeChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+
+    const value = Number(e.target.value);
+    setCurrentTime(value);
+    audioRef.current.currentTime = value;
+  }, []);
 
   useEffect(() => {
     if (playing) {
@@ -107,11 +112,11 @@ const useAudio = () => {
     playerVisible,
     playing,
     loading,
-    music,
+    currentMusic,
     currentTime,
     handleToggleClick,
-    handleItemToggleClick,
-    handlePauseClick,
+    handlePlayToggleClick,
+    handlePauseToggleClick,
     handleRangeChange,
   };
 };
