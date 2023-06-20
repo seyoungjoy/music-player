@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'react-uuid';
 
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
@@ -71,9 +70,10 @@ const MusicItem = ({
       </S.Row>
       <S.Row>
         <S.MusicItemMood>
-          {moods.map((mood) => (
-            <MusicMood key={uuid()} mood={mood} />
-          ))}
+          {moods.map((mood) => {
+            const key = `${mood}-${id}`;
+            return <MusicMood key={key} mood={mood} />;
+          })}
         </S.MusicItemMood>
         <S.MusicItemGenre>{genre}</S.MusicItemGenre>
         <S.MusicItemDate>{formatDate(public_date)}</S.MusicItemDate>
