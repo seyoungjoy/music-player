@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import { COLOR } from '../../constants/color';
+import { COLOR } from '../../constant/color';
 
 export const S = {
   H1: styled.h1`
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
     color: ${COLOR.DARK};
   `,
 };

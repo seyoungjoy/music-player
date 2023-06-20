@@ -38,7 +38,7 @@ const MusicPlayer = ({
             <input
               type="range"
               id="range"
-              max={audioRef.current?.duration}
+              max={audioRef.current?.duration ?? 0}
               value={currentTime}
               onChange={handleRangeChange}
             />

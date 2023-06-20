@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { COLOR } from '../../constants/color';
+import { COLOR } from '../../constant/color';
 
 export const S = {
   MusicItem: styled.li`
