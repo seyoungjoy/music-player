@@ -1,6 +1,6 @@
 export const COLOR = {
   PRIMARY: '#000000',
   DARK: '#3b3b3b',
-  BORDER: '#a4a4a4',
   LIGHT: '#ffffff',
+  BORDER: '#8a8a8a',
 } as const;
