@@ -10,6 +10,7 @@ interface State {
   info: Error | null;
 }
 
+// TODO: 에러 처리
 class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
