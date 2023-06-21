@@ -43,17 +43,18 @@ const MusicItem = ({
 
   const CURRENT_MUSIC = id === currentMusic.id;
   const renderToggleButton = () => {
+    // TODO : 리팩토링
     if (!CURRENT_MUSIC) {
       return (
         <PlayToggleButton playing={false} onClick={play} disabled={loading} />
       );
     }
 
-    if (CURRENT_MUSIC && playing) {
+    if (playing) {
       return <PlayToggleButton playing={playing} onClick={pause} />;
     }
 
-    if (CURRENT_MUSIC && !playing) {
+    if (!playing) {
       return (
         <PlayToggleButton playing={playing} onClick={play} loading={loading} />
       );

@@ -24,7 +24,7 @@ const Main = () => {
 
   return (
     <S.Container>
-      <Title />
+      <Title title="YOUNGS MUSIC" />
       <MusicList>
         {data.items.map((item) => (
           <MusicItem
