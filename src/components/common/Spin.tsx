@@ -1,21 +1,22 @@
+import { S } from './Spin.styled';
 const Spin = () => {
   return (
-    <div className="loadingio-spinner-spinner">
-      <div className="ldio">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+    <S.SpinnerContainer>
+      <S.SpinnerWrap>
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+        <S.SpinnerItem />
+      </S.SpinnerWrap>
+    </S.SpinnerContainer>
   );
 };
 
