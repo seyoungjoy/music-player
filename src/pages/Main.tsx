@@ -1,10 +1,23 @@
+import { useEffect, useState } from 'react';
+
 import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
-import { useAudio, useMusic } from '../hooks';
+import MusicErrorBoundary from '../components/MusicErrorBoundary';
+import MusicSuspense from '../components/MusicSuspense';
+import { useAudio } from '../hooks';
+import { ErrorResponse, fetchMusicList, MusicsResponse } from '../services';
 
 import { S } from './Main.styled';
 
+export type ErrorType = {
+  isError: boolean;
+  errorInfo?: ErrorResponse;
+};
+
 const Main = () => {
-  const { data, isLoading, error } = useMusic();
+  const [data, setData] = useState<MusicsResponse>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<ErrorType>({ isError: false });
+
   const audioState = useAudio();
   const {
     playing,
@@ -14,30 +27,44 @@ const Main = () => {
     handlePauseToggleClick,
   } = audioState;
 
-  if (!data || isLoading) {
-    return <div>loading...</div>;
-  }
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      const [error, data] = await fetchMusicList();
 
-  if (error) {
-    return <div>error</div>;
-  }
+      if (error) {
+        setIsLoading(false);
+        setError({ isError: true, errorInfo: error });
+        return;
+      }
+
+      setData(data);
+      setIsLoading(false);
+    })();
+  }, []);
 
   return (
     <S.Container>
       <Title title="YOUNGS MUSIC" />
-      <MusicList>
-        {data.items.map((item) => (
-          <MusicItem
-            key={item.id}
-            item={item}
-            playing={playing}
-            loading={loading}
-            currentMusic={currentMusic}
-            handlePlayToggleClick={handlePlayToggleClick}
-            handlePauseToggleClick={handlePauseToggleClick}
-          />
-        ))}
-      </MusicList>
+
+      <MusicErrorBoundary error={error}>
+        <MusicSuspense loading={isLoading}>
+          <MusicList>
+            {data?.items.map((item) => (
+              <MusicItem
+                key={item.id}
+                item={item}
+                playing={playing}
+                loading={loading}
+                currentMusic={currentMusic}
+                handlePlayToggleClick={handlePlayToggleClick}
+                handlePauseToggleClick={handlePauseToggleClick}
+              />
+            ))}
+          </MusicList>
+        </MusicSuspense>
+      </MusicErrorBoundary>
+
       <MusicPlayer {...audioState} />
     </S.Container>
   );
