@@ -1,5 +1,3 @@
-// 수정 및 삭제 금지
-
 import { createServer, Model } from 'miragejs';
 
 import mockData from './mockData';
