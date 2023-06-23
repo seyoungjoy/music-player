@@ -43,7 +43,7 @@
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "eslint": "^8.43.0",
