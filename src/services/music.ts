@@ -40,7 +40,6 @@ export const fetchMusicList = async (): Promise<
         null,
       ];
     } else {
-      console.log('Error', error.message);
       return [
         {
           message: error.message,

@@ -28,9 +28,14 @@ const Main = () => {
   } = audioState;
 
   useEffect(() => {
+    let isCancelled = false;
     (async () => {
       setIsLoading(true);
       const [error, data] = await fetchMusicList();
+
+      if (isCancelled) {
+        return;
+      }
 
       if (error) {
         setIsLoading(false);
@@ -41,6 +46,10 @@ const Main = () => {
       setData(data);
       setIsLoading(false);
     })();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return (
