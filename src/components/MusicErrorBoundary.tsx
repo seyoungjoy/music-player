@@ -1,11 +1,17 @@
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { ErrorType } from '../pages/Main';
+import { ErrorResponse } from '../services/type/service';
+
+export type ErrorType = {
+  isError: boolean;
+  errorInfo?: ErrorResponse;
+};
 
 type Props = {
   error: ErrorType;
   children: PropsWithChildren<ReactNode>;
 };
+
 const MusicErrorBoundary = ({ error, children }: Props) => {
   if (error.isError) {
     return (

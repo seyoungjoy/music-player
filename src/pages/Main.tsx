@@ -1,23 +1,12 @@
-import { useEffect, useState } from 'react';
-
 import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
 import MusicErrorBoundary from '../components/MusicErrorBoundary';
 import MusicSuspense from '../components/MusicSuspense';
-import { useAudio } from '../hooks';
-import { ErrorResponse, fetchMusicList, MusicsResponse } from '../services';
+import { useAudio, useMusic } from '../hooks';
 
 import { S } from './Main.styled';
 
-export type ErrorType = {
-  isError: boolean;
-  errorInfo?: ErrorResponse;
-};
-
 const Main = () => {
-  const [data, setData] = useState<MusicsResponse>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<ErrorType>({ isError: false });
-
+  const { data, isLoading, error } = useMusic();
   const audioState = useAudio();
   const {
     playing,
@@ -26,31 +15,6 @@ const Main = () => {
     handlePlayToggleClick,
     handlePauseToggleClick,
   } = audioState;
-
-  useEffect(() => {
-    let isCancelled = false;
-    (async () => {
-      setIsLoading(true);
-      const [error, data] = await fetchMusicList();
-
-      if (isCancelled) {
-        return;
-      }
-
-      if (error) {
-        setIsLoading(false);
-        setError({ isError: true, errorInfo: error });
-        return;
-      }
-
-      setData(data);
-      setIsLoading(false);
-    })();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
 
   return (
     <S.Container>
@@ -71,10 +35,9 @@ const Main = () => {
               />
             ))}
           </MusicList>
+          <MusicPlayer {...audioState} />
         </MusicSuspense>
       </MusicErrorBoundary>
-
-      <MusicPlayer {...audioState} />
     </S.Container>
   );
 };

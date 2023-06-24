@@ -3,13 +3,7 @@ import { AxiosError } from 'axios';
 import { Music } from '../types/music';
 
 import httpRequest from './httpRequest';
-
-export type ErrorResponse = {
-  message: string;
-  statusCode?: number;
-};
-
-type FetchResponse<R> = [ErrorResponse, null] | [null, R];
+import { FetchResponse } from './type/service';
 
 export type MusicsResponse = {
   total: number;
@@ -30,12 +24,19 @@ export const fetchMusicList = async (): Promise<
     });
     return [null, response.data];
   } catch (err) {
-    const error = (await err) as AxiosError;
+    const error = err as AxiosError;
     if (error.response) {
       return [
         {
           message: error.response.statusText,
           statusCode: error.response.status,
+        },
+        null,
+      ];
+    } else if (error.request) {
+      return [
+        {
+          message: 'Network error',
         },
         null,
       ];
