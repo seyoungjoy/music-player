@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { ErrorType } from '../components/MusicErrorBoundary';
 import { fetchMusicList } from '../services';
-import { MusicsResponse } from '../services';
+import { MusicsResponse } from '../services/type/service';
 
 const useMusic = () => {
   const [data, setData] = useState<MusicsResponse>();
