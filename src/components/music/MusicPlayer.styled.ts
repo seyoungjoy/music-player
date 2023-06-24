@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { COLOR } from '../../constant/color';
+import { COLOR } from '../../constants/color';
 
 export const S = {
   MusicPlayerWrapper: styled.div<{ visible: boolean }>`
