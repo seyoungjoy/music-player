@@ -1,4 +1,6 @@
 import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
+import MusicErrorBoundary from '../components/MusicErrorBoundary';
+import MusicSuspense from '../components/MusicSuspense';
 import { useAudio, useMusic } from '../hooks';
 
 import { S } from './Main.styled';
@@ -14,31 +16,28 @@ const Main = () => {
     handlePauseToggleClick,
   } = audioState;
 
-  if (!data || isLoading) {
-    return <div>loading...</div>;
-  }
-
-  if (error) {
-    return <div>error</div>;
-  }
-
   return (
     <S.Container>
       <Title title="YOUNGS MUSIC" />
-      <MusicList>
-        {data.items.map((item) => (
-          <MusicItem
-            key={item.id}
-            item={item}
-            playing={playing}
-            loading={loading}
-            currentMusic={currentMusic}
-            handlePlayToggleClick={handlePlayToggleClick}
-            handlePauseToggleClick={handlePauseToggleClick}
-          />
-        ))}
-      </MusicList>
-      <MusicPlayer {...audioState} />
+
+      <MusicErrorBoundary error={error}>
+        <MusicSuspense loading={isLoading}>
+          <MusicList>
+            {data?.items.map((item) => (
+              <MusicItem
+                key={item.id}
+                item={item}
+                playing={playing}
+                loading={loading}
+                currentMusic={currentMusic}
+                handlePlayToggleClick={handlePlayToggleClick}
+                handlePauseToggleClick={handlePauseToggleClick}
+              />
+            ))}
+          </MusicList>
+          <MusicPlayer {...audioState} />
+        </MusicSuspense>
+      </MusicErrorBoundary>
     </S.Container>
   );
 };
