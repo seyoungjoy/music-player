@@ -1,12 +1,12 @@
-import { PageTitle } from '../components/common';
+import { CardListTitle } from '../components/common';
+import ErrorBoundary from '../components/ErrorBoundary';
 import { MusicItem, MusicList, MusicPlayer } from '../components/music';
-import MusicErrorBoundary from '../components/MusicErrorBoundary';
-import MusicSuspense from '../components/MusicSuspense';
+import Suspense from '../components/Suspense';
 import { useAudio, useMusic } from '../hooks';
 
-import { S } from './Main.styled';
+import S from './Home.styled';
 
-const Main = () => {
+const NewRelease = () => {
   const { data, isLoading, error } = useMusic();
   const audioState = useAudio();
   const {
@@ -20,10 +20,10 @@ const Main = () => {
 
   return (
     <S.Container>
-      <PageTitle title="YOUNGS MUSIC" />
+      <CardListTitle title="New Music" />
 
-      <MusicErrorBoundary error={error}>
-        <MusicSuspense loading={isLoading}>
+      <ErrorBoundary error={error}>
+        <Suspense loading={isLoading}>
           <MusicList>
             {data?.items.map((item) => (
               <MusicItem
@@ -39,10 +39,10 @@ const Main = () => {
             ))}
           </MusicList>
           <MusicPlayer {...audioState} />
-        </MusicSuspense>
-      </MusicErrorBoundary>
+        </Suspense>
+      </ErrorBoundary>
     </S.Container>
   );
 };
 
-export default Main;
+export default NewRelease;

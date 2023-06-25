@@ -1,4 +1,4 @@
-import { S } from './Spin.styled';
+import S from './Spin.styled';
 const Spin = () => {
   return (
     <S.SpinnerContainer>

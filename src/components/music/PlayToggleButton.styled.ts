@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
 
-export const S = {
-  Button: styled.button`
+export type ButtonSize = 'small' | 'large';
+
+type Props = {
+  size: ButtonSize;
+};
+
+const S = {
+  Button: styled.button<Props>`
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: ${(props) => (props.size === 'small' ? '20px' : '30px')};
+    height: ${(props) => (props.size === 'small' ? '20px' : '30px')};
     cursor: pointer;
     & > img {
       position: absolute;
@@ -15,3 +21,4 @@ export const S = {
     }
   `,
 };
+export default S;

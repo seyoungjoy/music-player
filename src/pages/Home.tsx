@@ -1,0 +1,24 @@
+import { Link } from 'react-router-dom';
+
+import { CardListTitle } from '../components/common';
+import MusicCardItem from '../components/music/MusicCardItem';
+import MusicCardList from '../components/music/MusicCardList';
+import { ROUTER_PATH } from '../router/router';
+
+import S from './Home.styled';
+
+const Home = () => {
+  return (
+    <S.Container>
+      <CardListTitle title="최신 음악" />
+      {/*TODO: Mock data 교체*/}
+      <MusicCardList>
+        <Link to={ROUTER_PATH.NewRelease}>
+          <MusicCardItem />
+        </Link>
+      </MusicCardList>
+    </S.Container>
+  );
+};
+
+export default Home;

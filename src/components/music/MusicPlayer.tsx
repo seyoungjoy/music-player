@@ -2,7 +2,7 @@ import { AudioPlayer } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
 import { formatSecondsToTime } from '../../utils';
 
-import { S } from './MusicPlayer.styled';
+import S from './MusicPlayer.styled';
 import PlayToggleButton from './PlayToggleButton';
 
 type Props = AudioPlayer;
@@ -24,6 +24,7 @@ const MusicPlayer = ({
           playing={playing}
           onClick={togglePlayPause}
           loading={loading}
+          size="large"
         />
 
         <S.MusicPlayerTitle>{playingMusic.title}</S.MusicPlayerTitle>

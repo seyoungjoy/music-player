@@ -1,6 +1,7 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { RouterProvider } from 'react-router-dom';
 
-import Main from './pages/Main';
+import { router } from './router/router';
 
 function App() {
   const queryClient = new QueryClient({
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Main />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }

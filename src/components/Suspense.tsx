@@ -4,11 +4,11 @@ type Props = {
   loading: boolean;
   children: PropsWithChildren<ReactNode>;
 };
-const MusicSuspense = ({ loading, children }: Props) => {
+const Suspense = ({ loading, children }: Props) => {
   if (loading) {
-    return <div>Music loading...</div>;
+    return <div style={{ color: '#ffffff' }}>Music loading...</div>;
   }
   return <>{children}</>;
 };
 
-export default MusicSuspense;
+export default Suspense;

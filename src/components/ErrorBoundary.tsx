@@ -9,10 +9,10 @@ export type ErrorType = {
 
 type Props = {
   error: ErrorType;
-  children: PropsWithChildren<ReactNode>;
+  children?: PropsWithChildren<ReactNode>;
 };
 
-const MusicErrorBoundary = ({ error, children }: Props) => {
+const ErrorBoundary = ({ error, children }: Props) => {
   if (error.isError) {
     return (
       <>
@@ -24,4 +24,4 @@ const MusicErrorBoundary = ({ error, children }: Props) => {
   return <>{children}</>;
 };
 
-export default MusicErrorBoundary;
+export default ErrorBoundary;

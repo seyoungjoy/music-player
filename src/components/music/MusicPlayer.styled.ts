@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
-import { COLOR } from '../../constants/color';
+import { BACKGROUND, COLOR, TEXT } from '../../constants/color';
 
-export const S = {
+const S = {
   MusicPlayerWrapper: styled.div<{ visible: boolean }>`
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: ${COLOR.LIGHT};
+    background-color: ${BACKGROUND.SECONDARY};
     border-top: ${`1px solid ` + COLOR.BORDER};
     transform: ${(props) =>
       props.visible ? 'translate3D(0,0,0)' : 'translate3D(0,100%,0)'};
     transition: transform 200ms ease;
-    color: ${COLOR.DARK};
+    color: ${TEXT.PRIMARY};
   `,
   MusicPlayerControl: styled.div`
     max-width: 1020px;
@@ -37,3 +37,5 @@ export const S = {
   MusicPlayerCurrentTime: styled.span``,
   MusicPlayerDuration: styled.span``,
 };
+
+export default S;

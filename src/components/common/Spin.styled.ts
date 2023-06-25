@@ -10,13 +10,13 @@ const fadeAnimation = keyframes`
   }
 `;
 
-export const S = {
+const S = {
   SpinnerContainer: styled.div`
     width: 30px;
     height: 30px;
     display: inline-block;
     overflow: hidden;
-    background: #ffffff;
+    background: transparent;
   `,
   SpinnerWrap: styled.div`
     width: 100%;
@@ -99,3 +99,5 @@ export const S = {
     box-sizing: content-box;
   `,
 };
+
+export default S;
