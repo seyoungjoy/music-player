@@ -20,7 +20,9 @@ export type Audio = {
   handleToggleClick: () => void;
   handleRangeChange: ChangeEventHandler;
   handlePlayToggleClick: (musicId: string, title: string) => void;
-  handlePauseToggleClick: () => void;
+  // handlePauseToggleClick: () => void;
+  playAudio: () => void;
+  pauseAudio: () => void;
 };
 
 type CurrentMusic = {
@@ -45,18 +47,18 @@ const useAudio = () => {
     setPlayerVisible(true);
   };
 
-  const play = () => {
+  const playAudio = useCallback(() => {
     audioRef.current?.play();
     setPlaying(true);
-  };
+  }, []);
 
-  const pause = () => {
+  const pauseAudio = useCallback(() => {
     audioRef.current?.pause();
     setPlaying(false);
-  };
+  }, []);
 
   const handleToggleClick = () => {
-    playing ? pause() : play();
+    playing ? pauseAudio() : playAudio();
   };
 
   const loadAudioSrc = (url: string) => {
@@ -75,17 +77,13 @@ const useAudio = () => {
         const data = await fetchMusicUrl(musicId);
         loadAudioSrc(data.url);
         setLoading(false);
-        play();
+        playAudio();
       } catch (error) {
         console.log(error);
       }
     },
     [],
   );
-
-  const handlePauseToggleClick = useCallback(() => {
-    pause();
-  }, []);
 
   const handleRangeChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (!audioRef.current) return;
@@ -114,7 +112,8 @@ const useAudio = () => {
     currentTime,
     handleToggleClick,
     handlePlayToggleClick,
-    handlePauseToggleClick,
+    playAudio,
+    pauseAudio,
     handleRangeChange,
   };
 };

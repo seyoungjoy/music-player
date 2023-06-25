@@ -20,7 +20,8 @@ type AudioItem = Pick<
   | 'loading'
   | 'currentMusic'
   | 'handlePlayToggleClick'
-  | 'handlePauseToggleClick'
+  | 'playAudio'
+  | 'pauseAudio'
 >;
 
 const MusicItem = ({
@@ -29,38 +30,48 @@ const MusicItem = ({
   loading,
   currentMusic,
   handlePlayToggleClick,
-  handlePauseToggleClick,
+  playAudio,
+  pauseAudio,
 }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
-  const play = () => {
+  const playOtherMusic = () => {
     handlePlayToggleClick(id, title);
   };
 
-  const pause = () => {
-    handlePauseToggleClick();
+  const playCurrentMusic = () => {
+    playAudio();
+  };
+
+  const pauseCurrentMusic = () => {
+    pauseAudio();
   };
 
   const CURRENT_MUSIC = id === currentMusic.id;
   const renderToggleButton = () => {
-    // TODO : 리팩토링 및 처음부터 재생되는 버그 수정
     if (!CURRENT_MUSIC) {
       return (
-        <PlayToggleButton playing={false} onClick={play} disabled={loading} />
+        <PlayToggleButton
+          playing={false}
+          onClick={playOtherMusic}
+          disabled={loading}
+        />
       );
     }
 
     if (playing) {
-      return <PlayToggleButton playing={playing} onClick={pause} />;
+      return <PlayToggleButton playing={playing} onClick={pauseCurrentMusic} />;
     }
 
     if (!playing) {
       return (
-        <PlayToggleButton playing={playing} onClick={play} loading={loading} />
+        <PlayToggleButton
+          playing={playing}
+          onClick={playCurrentMusic}
+          loading={loading}
+        />
       );
     }
-
-    return <PlayToggleButton playing={false} onClick={play} />;
   };
 
   return (
