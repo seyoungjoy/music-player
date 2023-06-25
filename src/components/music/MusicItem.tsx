@@ -47,9 +47,10 @@ const MusicItem = ({
     pauseAudio();
   };
 
-  const CURRENT_MUSIC = id === currentMusic.id;
   const renderToggleButton = () => {
-    if (!CURRENT_MUSIC) {
+    const currentPlayingItem = id === currentMusic.id;
+
+    if (!currentPlayingItem) {
       return (
         <PlayToggleButton
           playing={false}
