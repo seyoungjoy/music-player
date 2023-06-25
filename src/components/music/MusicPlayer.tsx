@@ -1,9 +1,9 @@
 import { Audio } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
 import { formatTime } from '../../utils';
-import PlayToggleButton from '../common/PlayToggleButton';
 
 import { S } from './MusicPlayer.styled';
+import PlayToggleButton from './PlayToggleButton';
 
 type Props = Audio;
 

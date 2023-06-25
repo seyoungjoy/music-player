@@ -20,7 +20,6 @@ export type Audio = {
   handleToggleClick: () => void;
   handleRangeChange: ChangeEventHandler;
   handlePlayToggleClick: (musicId: string, title: string) => void;
-  // handlePauseToggleClick: () => void;
   playAudio: () => void;
   pauseAudio: () => void;
 };
