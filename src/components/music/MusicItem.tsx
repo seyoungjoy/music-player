@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
-import { stringDateToDottedFormat } from '../../utils';
+import { formatStringDateToDottedType } from '../../utils';
 import { PlayToggleButton } from '../index';
 
 import { S } from './MusicItem.styled';
@@ -96,7 +96,7 @@ const MusicItem = ({
         </S.MusicItemMood>
         <S.MusicItemGenre>{genre}</S.MusicItemGenre>
         <S.MusicItemDate>
-          {stringDateToDottedFormat(public_date)}
+          {formatStringDateToDottedType(public_date)}
         </S.MusicItemDate>
       </S.Row>
     </S.MusicItem>

@@ -1,6 +1,6 @@
 import { Audio } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
-import { formatTime } from '../../utils';
+import { formatSecondsToTime } from '../../utils';
 
 import { S } from './MusicPlayer.styled';
 import PlayToggleButton from './PlayToggleButton';
@@ -30,7 +30,7 @@ const MusicPlayer = ({
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>
-            {formatTime(audioRef.current?.currentTime)}
+            {formatSecondsToTime(audioRef.current?.currentTime)}
           </S.MusicPlayerCurrentTime>
 
           <S.MusicPlayerSlider>
@@ -44,7 +44,7 @@ const MusicPlayer = ({
             />
           </S.MusicPlayerSlider>
           <S.MusicPlayerDuration>
-            {formatTime(audioRef.current?.duration)}
+            {formatSecondsToTime(audioRef.current?.duration)}
           </S.MusicPlayerDuration>
         </S.MusicPlayerProgressBar>
 
