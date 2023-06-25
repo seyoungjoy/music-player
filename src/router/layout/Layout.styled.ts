@@ -39,7 +39,7 @@ const S = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 0;
+    padding: 10px 0;
   `,
   Logo: styled.div`
     margin-left: 10px;
