@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { COLOR } from '../../constants/color';
+import { COLOR, TEXT } from '../../constants/color';
 
 export const S = {
   MusicItem: styled.li`
@@ -10,7 +10,7 @@ export const S = {
     padding: 15px 20px;
     border: ${`1px solid ` + COLOR.BORDER};
     border-radius: 5px;
-    color: ${COLOR.DARK};
+    color: ${TEXT.PRIMARY};
   `,
   MusicItemPlayToggle: styled.div`
     position: relative;

@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import { Link, Outlet } from 'react-router-dom';
 
-import { BACKGROUND, TEXT } from '../../constants/color';
+import { BACKGROUND, COLOR, TEXT } from '../../constants/color';
 import { ROUTER_PATH } from '../router';
 
 const S = {
   Layout: styled.div`
     display: flex;
+    gap: 15px;
+    margin: 15px;
   `,
   Aside: styled.aside`
     flex: 0 0 200px;
@@ -21,6 +23,34 @@ const S = {
     padding: 10px 10px;
     font-size: 15px;
     cursor: pointer;
+  `,
+  Main: styled.main`
+    flex: 1 1 auto;
+    border-radius: 8px;
+    background-color: ${BACKGROUND.SECONDARY};
+  `,
+  Content: styled.div`
+    padding: 20px 20px;
+  `,
+  Header: styled.header`
+    background-color: rgba(0, 0, 0, 0.5);
+    color: ${TEXT.SECONDARY};
+    font-size: 15px;
+  `,
+  Nav: styled.nav`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+  `,
+  Logo: styled.div`
+    margin-left: 10px;
+  `,
+  Button: styled.button`
+    padding: 5px 15px;
+    margin: 0 10px;
+    border-radius: 20px;
+    background-color: ${COLOR.LIGHT};
   `,
 };
 
@@ -41,19 +71,20 @@ const Layout = () => {
         </S.Ul>
       </S.Aside>
 
-      <div>
-        <header>
-          <nav>
-            <ul>
-              <li>가입하기</li>
-              <li>로그인하기</li>
-            </ul>
-          </nav>
-        </header>
-        <main>
+      <S.Main>
+        <S.Header>
+          <S.Nav>
+            <S.Logo>Youngs Music</S.Logo>
+            <div>
+              <S.Button>가입하기</S.Button>
+              <S.Button>로그인하기</S.Button>
+            </div>
+          </S.Nav>
+        </S.Header>
+        <S.Content>
           <Outlet />
-        </main>
-      </div>
+        </S.Content>
+      </S.Main>
     </S.Layout>
   );
 };

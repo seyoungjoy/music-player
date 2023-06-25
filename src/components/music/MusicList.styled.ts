@@ -5,6 +5,6 @@ export const S = {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 30px 0 80px;
+    margin: 0;
   `,
 };
