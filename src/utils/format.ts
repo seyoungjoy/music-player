@@ -12,7 +12,7 @@ export const formatTime = (time: number | undefined) => {
   return `${minutes}:${seconds}`;
 };
 
-export const formatDate = (stringDate: string) => {
+export const stringDateToDottedFormat = (stringDate: string) => {
   const date = new Date(stringDate);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
