@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import MusicErrorBoundary, {
-  ErrorType,
-} from '../components/MusicErrorBoundary';
+import ErrorBoundary, { ErrorType } from '../components/ErrorBoundary';
 import { Home } from '../pages';
 import NewRelease from '../pages/NewRelease';
 
@@ -27,7 +25,7 @@ export const router = createBrowserRouter([
   {
     path: ROUTER_PATH.HOME,
     element: <Layout />,
-    errorElement: <MusicErrorBoundary error={error} />,
+    errorElement: <ErrorBoundary error={error} />,
     children: [
       {
         path: ROUTER_PATH.HOME,

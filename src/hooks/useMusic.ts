@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { ErrorType } from '../components/MusicErrorBoundary';
+import { ErrorType } from '../components/ErrorBoundary';
 import { fetchMusicList, MusicsResponse } from '../services';
 
 const useMusic = () => {

@@ -1,7 +1,7 @@
 import { CardListTitle } from '../components/common';
+import ErrorBoundary from '../components/ErrorBoundary';
 import { MusicItem, MusicList, MusicPlayer } from '../components/music';
-import MusicErrorBoundary from '../components/MusicErrorBoundary';
-import MusicSuspense from '../components/MusicSuspense';
+import Suspense from '../components/Suspense';
 import { useAudio, useMusic } from '../hooks';
 
 import S from './Home.styled';
@@ -22,8 +22,8 @@ const NewRelease = () => {
     <S.Container>
       <CardListTitle title="New Music" />
 
-      <MusicErrorBoundary error={error}>
-        <MusicSuspense loading={isLoading}>
+      <ErrorBoundary error={error}>
+        <Suspense loading={isLoading}>
           <MusicList>
             {data?.items.map((item) => (
               <MusicItem
@@ -39,8 +39,8 @@ const NewRelease = () => {
             ))}
           </MusicList>
           <MusicPlayer {...audioState} />
-        </MusicSuspense>
-      </MusicErrorBoundary>
+        </Suspense>
+      </ErrorBoundary>
     </S.Container>
   );
 };
