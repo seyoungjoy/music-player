@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Audio } from '../../hooks/useAudio';
+import { AudioPlayer } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
 import { formatStringDateToDottedType } from '../../utils';
 
@@ -8,14 +8,14 @@ import { S } from './MusicItem.styled';
 
 import { MusicMood, PlayToggleButton } from './index';
 
-type Props = MusicItem & AudioItem;
+type Props = MusicItem & AudioPlayerPick;
 
 type MusicItem = {
   item: Music;
 };
 
-type AudioItem = Pick<
-  Audio,
+type AudioPlayerPick = Pick<
+  AudioPlayer,
   | 'playing'
   | 'loading'
   | 'playingMusic'

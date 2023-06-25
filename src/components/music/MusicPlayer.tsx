@@ -1,11 +1,11 @@
-import { Audio } from '../../hooks/useAudio';
+import { AudioPlayer } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
 import { formatSecondsToTime } from '../../utils';
 
 import { S } from './MusicPlayer.styled';
 import PlayToggleButton from './PlayToggleButton';
 
-type Props = Audio;
+type Props = AudioPlayer;
 
 const MusicPlayer = ({
   audioRef,

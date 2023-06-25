@@ -10,7 +10,7 @@ import {
 
 import { fetchMusicUrl } from '../services';
 
-export type Audio = {
+export type AudioPlayer = {
   audioRef: RefObject<HTMLAudioElement>;
   playerVisible: boolean;
   playing: boolean;
