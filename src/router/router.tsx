@@ -3,7 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import MusicErrorBoundary, {
   ErrorType,
 } from '../components/MusicErrorBoundary';
-import { Chart, Home } from '../pages';
+import { Home } from '../pages';
+import NewRelease from '../pages/NewRelease';
 
 import Layout from './layout/Layout';
 
@@ -11,7 +12,7 @@ export const ROUTER_PATH = {
   HOME: '/',
   SEARCH: '/search',
   LIBRARY: '/library',
-  CHART: '/chart',
+  NewRelease: '/new-release',
 };
 
 const error: ErrorType = {
@@ -33,8 +34,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTER_PATH.CHART,
-        element: <Chart />,
+        path: ROUTER_PATH.NewRelease,
+        element: <NewRelease />,
       },
     ],
   },

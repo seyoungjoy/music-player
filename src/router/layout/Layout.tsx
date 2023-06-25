@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { Link, Outlet } from 'react-router-dom';
 
+import { MusicPlayer } from '../../components/music';
 import { BACKGROUND, COLOR, TEXT } from '../../constants/color';
+import { useAudio } from '../../hooks';
 import { ROUTER_PATH } from '../router';
 
 const S = {
@@ -55,6 +57,8 @@ const S = {
 };
 
 const Layout = () => {
+  const audioState = useAudio();
+
   return (
     <S.Layout>
       <S.Aside>
@@ -85,6 +89,7 @@ const Layout = () => {
           <Outlet />
         </S.Content>
       </S.Main>
+      <MusicPlayer {...audioState} />
     </S.Layout>
   );
 };
