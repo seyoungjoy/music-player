@@ -9,7 +9,7 @@ export type ErrorType = {
 
 type Props = {
   error: ErrorType;
-  children: PropsWithChildren<ReactNode>;
+  children?: PropsWithChildren<ReactNode>;
 };
 
 const MusicErrorBoundary = ({ error, children }: Props) => {
