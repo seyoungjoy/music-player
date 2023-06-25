@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
@@ -18,8 +18,8 @@ type AudioItem = Pick<
   Audio,
   | 'playing'
   | 'loading'
-  | 'currentMusic'
-  | 'handlePlayToggleClick'
+  | 'playingMusic'
+  | 'loadAndPlayMusic'
   | 'playAudio'
   | 'pauseAudio'
 >;
@@ -28,15 +28,15 @@ const MusicItem = ({
   item,
   playing,
   loading,
-  currentMusic,
-  handlePlayToggleClick,
+  playingMusic,
+  loadAndPlayMusic,
   playAudio,
   pauseAudio,
 }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
   const playOtherMusic = () => {
-    handlePlayToggleClick(id, title);
+    loadAndPlayMusic(id, title);
   };
 
   const playCurrentMusic = () => {
@@ -48,7 +48,7 @@ const MusicItem = ({
   };
 
   const renderToggleButton = () => {
-    const currentPlayingItem = id === currentMusic.id;
+    const currentPlayingItem = id === playingMusic.id;
 
     if (!currentPlayingItem) {
       return (
@@ -74,12 +74,6 @@ const MusicItem = ({
       );
     }
   };
-
-  useEffect(() => {
-    const PUBLIC_DATA = '2021-11-03T17:56:55';
-    const date = new Date(PUBLIC_DATA);
-    console.log(date);
-  }, []);
 
   return (
     <S.MusicItem>

@@ -11,8 +11,8 @@ const Main = () => {
   const {
     playing,
     loading,
-    currentMusic,
-    handlePlayToggleClick,
+    playingMusic,
+    loadAndPlayMusic,
     playAudio,
     pauseAudio,
   } = audioState;
@@ -30,8 +30,8 @@ const Main = () => {
                 item={item}
                 playing={playing}
                 loading={loading}
-                currentMusic={currentMusic}
-                handlePlayToggleClick={handlePlayToggleClick}
+                playingMusic={playingMusic}
+                loadAndPlayMusic={loadAndPlayMusic}
                 playAudio={playAudio}
                 pauseAudio={pauseAudio}
               />

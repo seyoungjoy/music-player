@@ -12,21 +12,21 @@ const MusicPlayer = ({
   playerVisible,
   playing,
   loading,
-  currentMusic,
+  playingMusic,
   currentTime,
   handleRangeChange,
-  handleToggleClick,
+  togglePlayPause,
 }: Props) => {
   return (
     <S.MusicPlayerWrapper visible={playerVisible}>
       <S.MusicPlayerControl>
         <PlayToggleButton
           playing={playing}
-          onClick={handleToggleClick}
+          onClick={togglePlayPause}
           loading={loading}
         />
 
-        <S.MusicPlayerTitle>{currentMusic.title}</S.MusicPlayerTitle>
+        <S.MusicPlayerTitle>{playingMusic.title}</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>
