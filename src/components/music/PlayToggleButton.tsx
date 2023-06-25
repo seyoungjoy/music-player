@@ -2,7 +2,7 @@ import React from 'react';
 
 import PlayIcon from '../../assets/images/ic-small-fill-play-gray.png';
 import PauseIcon from '../../assets/images/ic-small-line-stop-gray.png';
-import Spin from '../common/Spin';
+import { Spin } from '../common';
 
 import { S } from './PlayToggleButton.styled';
 

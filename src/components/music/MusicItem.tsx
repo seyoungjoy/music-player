@@ -3,10 +3,10 @@ import React from 'react';
 import { Audio } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
 import { formatStringDateToDottedType } from '../../utils';
-import { PlayToggleButton } from '../index';
 
 import { S } from './MusicItem.styled';
-import MusicMood from './MusicMood';
+
+import { MusicMood, PlayToggleButton } from './index';
 
 type Props = MusicItem & AudioItem;
 

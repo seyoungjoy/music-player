@@ -1,4 +1,5 @@
-import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
+import { PageTitle } from '../components/common';
+import { MusicItem, MusicList, MusicPlayer } from '../components/music';
 import MusicErrorBoundary from '../components/MusicErrorBoundary';
 import MusicSuspense from '../components/MusicSuspense';
 import { useAudio, useMusic } from '../hooks';
@@ -19,7 +20,7 @@ const Main = () => {
 
   return (
     <S.Container>
-      <Title title="YOUNGS MUSIC" />
+      <PageTitle title="YOUNGS MUSIC" />
 
       <MusicErrorBoundary error={error}>
         <MusicSuspense loading={isLoading}>
