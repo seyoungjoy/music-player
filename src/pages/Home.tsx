@@ -4,9 +4,9 @@ import MusicErrorBoundary from '../components/MusicErrorBoundary';
 import MusicSuspense from '../components/MusicSuspense';
 import { useAudio, useMusic } from '../hooks';
 
-import { S } from './Main.styled';
+import { S } from './Home.styled';
 
-const Main = () => {
+const Home = () => {
   const { data, isLoading, error } = useMusic();
   const audioState = useAudio();
   const {
@@ -45,4 +45,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;
