@@ -1,36 +1,36 @@
-import { Audio } from '../../hooks/useAudio';
+import { AudioPlayer } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
-import { formatTime } from '../../utils';
-import PlayToggleButton from '../common/PlayToggleButton';
+import { formatSecondsToTime } from '../../utils';
 
 import { S } from './MusicPlayer.styled';
+import PlayToggleButton from './PlayToggleButton';
 
-type Props = Audio;
+type Props = AudioPlayer;
 
 const MusicPlayer = ({
   audioRef,
   playerVisible,
   playing,
   loading,
-  currentMusic,
+  playingMusic,
   currentTime,
   handleRangeChange,
-  handleToggleClick,
+  togglePlayPause,
 }: Props) => {
   return (
     <S.MusicPlayerWrapper visible={playerVisible}>
       <S.MusicPlayerControl>
         <PlayToggleButton
           playing={playing}
-          onClick={handleToggleClick}
+          onClick={togglePlayPause}
           loading={loading}
         />
 
-        <S.MusicPlayerTitle>{currentMusic.title}</S.MusicPlayerTitle>
+        <S.MusicPlayerTitle>{playingMusic.title}</S.MusicPlayerTitle>
 
         <S.MusicPlayerProgressBar>
           <S.MusicPlayerCurrentTime>
-            {formatTime(audioRef.current?.currentTime)}
+            {formatSecondsToTime(audioRef.current?.currentTime)}
           </S.MusicPlayerCurrentTime>
 
           <S.MusicPlayerSlider>
@@ -44,7 +44,7 @@ const MusicPlayer = ({
             />
           </S.MusicPlayerSlider>
           <S.MusicPlayerDuration>
-            {formatTime(audioRef.current?.duration)}
+            {formatSecondsToTime(audioRef.current?.duration)}
           </S.MusicPlayerDuration>
         </S.MusicPlayerProgressBar>
 

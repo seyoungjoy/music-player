@@ -10,22 +10,21 @@ import {
 
 import { fetchMusicUrl } from '../services';
 
-export type Audio = {
+export type AudioPlayer = {
   audioRef: RefObject<HTMLAudioElement>;
   playerVisible: boolean;
   playing: boolean;
   loading: boolean;
-  currentMusic: CurrentMusic;
   currentTime: number;
-  handleToggleClick: () => void;
-  handleRangeChange: ChangeEventHandler;
-  handlePlayToggleClick: (musicId: string, title: string) => void;
-  // handlePauseToggleClick: () => void;
+  playingMusic: PlayingMusic;
   playAudio: () => void;
   pauseAudio: () => void;
+  togglePlayPause: () => void;
+  loadAndPlayMusic: (musicId: string, title: string) => void;
+  handleRangeChange: ChangeEventHandler;
 };
 
-type CurrentMusic = {
+type PlayingMusic = {
   id: string;
   title: string;
 };
@@ -35,7 +34,7 @@ const useAudio = () => {
 
   const [playerVisible, setPlayerVisible] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [currentMusic, setCurrentMusic] = useState<CurrentMusic>({
+  const [playingMusic, setPlayingMusic] = useState<PlayingMusic>({
     id: '',
     title: '',
   });
@@ -57,7 +56,7 @@ const useAudio = () => {
     setPlaying(false);
   }, []);
 
-  const handleToggleClick = () => {
+  const togglePlayPause = () => {
     playing ? pauseAudio() : playAudio();
   };
 
@@ -66,20 +65,23 @@ const useAudio = () => {
     audioRef.current.src = url;
   };
 
-  const handlePlayToggleClick = useCallback(
+  const loadAndPlayMusic = useCallback(
     async (musicId: string, musicTitle: string) => {
       playerInit();
 
       try {
         setLoading(true);
         setPlaying(false);
-        setCurrentMusic({ id: musicId, title: musicTitle });
+        setPlayingMusic({ id: musicId, title: musicTitle });
         const data = await fetchMusicUrl(musicId);
         loadAudioSrc(data.url);
         setLoading(false);
         playAudio();
       } catch (error) {
         console.log(error);
+        alert('오류가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
+        setLoading(false);
+        pauseAudio();
       }
     },
     [],
@@ -108,10 +110,10 @@ const useAudio = () => {
     playerVisible,
     playing,
     loading,
-    currentMusic,
+    playingMusic,
     currentTime,
-    handleToggleClick,
-    handlePlayToggleClick,
+    togglePlayPause,
+    loadAndPlayMusic,
     playAudio,
     pauseAudio,
     handleRangeChange,

@@ -1,18 +1,23 @@
 import { AxiosError } from 'axios';
 
-import {
-  FetchResponse,
-  MusicsResponse,
-  MusicURLResponse,
-} from './type/service';
+import { Music } from '../../types/music';
+import { axiosInstance } from '../index';
+import { FetchResponse } from '../types/response';
 
-import { httpRequest } from './index';
+export type MusicsResponse = {
+  total: number;
+  items: Music[];
+};
+
+export type MusicURLResponse = {
+  url: string;
+};
 
 export const fetchMusicList = async (): Promise<
   FetchResponse<MusicsResponse>
 > => {
   try {
-    const response = await httpRequest({
+    const response = await axiosInstance({
       url: '/musics',
       method: 'GET',
     });
@@ -48,7 +53,7 @@ export const fetchMusicList = async (): Promise<
 export const fetchMusicUrl = async (
   payload?: string,
 ): Promise<MusicURLResponse> => {
-  const { data } = await httpRequest({
+  const { data } = await axiosInstance({
     url: `/musics/${payload}`,
     method: 'GET',
   });

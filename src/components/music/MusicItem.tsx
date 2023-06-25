@@ -1,25 +1,25 @@
 import React from 'react';
 
-import { Audio } from '../../hooks/useAudio';
+import { AudioPlayer } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
-import { formatDate } from '../../utils';
-import { PlayToggleButton } from '../index';
+import { formatStringDateToDottedType } from '../../utils';
 
 import { S } from './MusicItem.styled';
-import MusicMood from './MusicMood';
 
-type Props = MusicItem & AudioItem;
+import { MusicMood, PlayToggleButton } from './index';
+
+type Props = MusicItem & AudioPlayerPick;
 
 type MusicItem = {
   item: Music;
 };
 
-type AudioItem = Pick<
-  Audio,
+type AudioPlayerPick = Pick<
+  AudioPlayer,
   | 'playing'
   | 'loading'
-  | 'currentMusic'
-  | 'handlePlayToggleClick'
+  | 'playingMusic'
+  | 'loadAndPlayMusic'
   | 'playAudio'
   | 'pauseAudio'
 >;
@@ -28,15 +28,15 @@ const MusicItem = ({
   item,
   playing,
   loading,
-  currentMusic,
-  handlePlayToggleClick,
+  playingMusic,
+  loadAndPlayMusic,
   playAudio,
   pauseAudio,
 }: Props) => {
   const { id, title, moods, genre, public_date } = item;
 
   const playOtherMusic = () => {
-    handlePlayToggleClick(id, title);
+    loadAndPlayMusic(id, title);
   };
 
   const playCurrentMusic = () => {
@@ -47,9 +47,10 @@ const MusicItem = ({
     pauseAudio();
   };
 
-  const CURRENT_MUSIC = id === currentMusic.id;
   const renderToggleButton = () => {
-    if (!CURRENT_MUSIC) {
+    const currentPlayingItem = id === playingMusic.id;
+
+    if (!currentPlayingItem) {
       return (
         <PlayToggleButton
           playing={false}
@@ -88,7 +89,9 @@ const MusicItem = ({
           })}
         </S.MusicItemMood>
         <S.MusicItemGenre>{genre}</S.MusicItemGenre>
-        <S.MusicItemDate>{formatDate(public_date)}</S.MusicItemDate>
+        <S.MusicItemDate>
+          {formatStringDateToDottedType(public_date)}
+        </S.MusicItemDate>
       </S.Row>
     </S.MusicItem>
   );

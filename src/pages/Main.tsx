@@ -1,4 +1,5 @@
-import { Title, MusicList, MusicItem, MusicPlayer } from '../components';
+import { PageTitle } from '../components/common';
+import { MusicItem, MusicList, MusicPlayer } from '../components/music';
 import MusicErrorBoundary from '../components/MusicErrorBoundary';
 import MusicSuspense from '../components/MusicSuspense';
 import { useAudio, useMusic } from '../hooks';
@@ -11,15 +12,15 @@ const Main = () => {
   const {
     playing,
     loading,
-    currentMusic,
-    handlePlayToggleClick,
+    playingMusic,
+    loadAndPlayMusic,
     playAudio,
     pauseAudio,
   } = audioState;
 
   return (
     <S.Container>
-      <Title title="YOUNGS MUSIC" />
+      <PageTitle title="YOUNGS MUSIC" />
 
       <MusicErrorBoundary error={error}>
         <MusicSuspense loading={isLoading}>
@@ -30,8 +31,8 @@ const Main = () => {
                 item={item}
                 playing={playing}
                 loading={loading}
-                currentMusic={currentMusic}
-                handlePlayToggleClick={handlePlayToggleClick}
+                playingMusic={playingMusic}
+                loadAndPlayMusic={loadAndPlayMusic}
                 playAudio={playAudio}
                 pauseAudio={pauseAudio}
               />
