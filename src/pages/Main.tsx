@@ -13,7 +13,8 @@ const Main = () => {
     loading,
     currentMusic,
     handlePlayToggleClick,
-    handlePauseToggleClick,
+    playAudio,
+    pauseAudio,
   } = audioState;
 
   return (
@@ -31,7 +32,8 @@ const Main = () => {
                 loading={loading}
                 currentMusic={currentMusic}
                 handlePlayToggleClick={handlePlayToggleClick}
-                handlePauseToggleClick={handlePauseToggleClick}
+                playAudio={playAudio}
+                pauseAudio={pauseAudio}
               />
             ))}
           </MusicList>
