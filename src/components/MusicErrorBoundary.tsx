@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { ErrorResponse } from '../services/type/service';
+import { ErrorResponse } from '../services';
 
 export type ErrorType = {
   isError: boolean;

@@ -1,12 +1,17 @@
 import { AxiosError } from 'axios';
 
-import {
-  FetchResponse,
-  MusicsResponse,
-  MusicURLResponse,
-} from './type/service';
+import { Music } from '../../types/music';
+import { axiosInstance } from '../index';
+import { FetchResponse } from '../types/response';
 
-import { axiosInstance } from './index';
+export type MusicsResponse = {
+  total: number;
+  items: Music[];
+};
+
+export type MusicURLResponse = {
+  url: string;
+};
 
 export const fetchMusicList = async (): Promise<
   FetchResponse<MusicsResponse>

@@ -1,2 +1,3 @@
-export * from './music';
-export { default as axiosInstance } from './api/axiosInstance';
+export { default as axiosInstance } from './http/axiosConfig';
+export * from './apis/musicApi';
+export * from './types/response';
