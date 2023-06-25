@@ -1,2 +1,2 @@
 export * from './music';
-export { default as httpRequest } from './api/httpRequest';
+export { default as axiosInstance } from './api/axiosInstance';
