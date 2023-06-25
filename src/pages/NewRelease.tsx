@@ -1,10 +1,10 @@
-import { PageTitle } from '../components/common';
+import { CardListTitle } from '../components/common';
 import { MusicItem, MusicList, MusicPlayer } from '../components/music';
 import MusicErrorBoundary from '../components/MusicErrorBoundary';
 import MusicSuspense from '../components/MusicSuspense';
 import { useAudio, useMusic } from '../hooks';
 
-import { S } from './Home.styled';
+import S from './Home.styled';
 
 const NewRelease = () => {
   const { data, isLoading, error } = useMusic();
@@ -20,7 +20,7 @@ const NewRelease = () => {
 
   return (
     <S.Container>
-      <PageTitle title="최신 음악 베스트" />
+      <CardListTitle title="New Music" />
 
       <MusicErrorBoundary error={error}>
         <MusicSuspense loading={isLoading}>

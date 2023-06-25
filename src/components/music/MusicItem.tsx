@@ -4,7 +4,7 @@ import { AudioPlayer } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
 import { formatStringDateToDottedType } from '../../utils';
 
-import { S } from './MusicItem.styled';
+import S from './MusicItem.styled';
 
 import { MusicMood, PlayToggleButton } from './index';
 
@@ -76,7 +76,7 @@ const MusicItem = ({
   };
 
   return (
-    <S.MusicItem>
+    <S.Wrapper>
       <S.Row>
         {renderToggleButton()}
         <S.MusicItemTitle>{title}</S.MusicItemTitle>
@@ -93,7 +93,7 @@ const MusicItem = ({
           {formatStringDateToDottedType(public_date)}
         </S.MusicItemDate>
       </S.Row>
-    </S.MusicItem>
+    </S.Wrapper>
   );
 };
 

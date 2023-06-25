@@ -7,6 +7,7 @@ const S = {
     padding: 13px;
     border-radius: 7px;
     background-color: ${BACKGROUND.THIRD};
+    cursor: pointer;
   `,
   ImageWrapper: styled.div`
     margin-bottom: 7px;

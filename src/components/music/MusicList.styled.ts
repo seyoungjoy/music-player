@@ -4,7 +4,7 @@ export const S = {
   MusicList: styled.ul`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    //gap: 8px;
     margin: 0;
   `,
 };

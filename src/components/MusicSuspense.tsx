@@ -6,7 +6,7 @@ type Props = {
 };
 const MusicSuspense = ({ loading, children }: Props) => {
   if (loading) {
-    return <div>Music loading...</div>;
+    return <div style={{ color: '#ffffff' }}>Music loading...</div>;
   }
   return <>{children}</>;
 };

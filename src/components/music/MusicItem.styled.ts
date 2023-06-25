@@ -1,16 +1,19 @@
 import styled from '@emotion/styled';
 
-import { COLOR, TEXT } from '../../constants/color';
+import { BACKGROUND, TEXT } from '../../constants/color';
 
-export const S = {
-  MusicItem: styled.li`
+const S = {
+  Wrapper: styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 20px;
-    border: ${`1px solid ` + COLOR.BORDER};
+    padding: 5px 10px 5px 5px;
     border-radius: 5px;
     color: ${TEXT.PRIMARY};
+    font-size: 16px;
+    &:hover {
+      background-color: ${BACKGROUND.THIRD};
+    }
   `,
   MusicItemPlayToggle: styled.div`
     position: relative;
@@ -43,3 +46,5 @@ export const S = {
     align-items: center;
   `,
 };
+
+export default S;
