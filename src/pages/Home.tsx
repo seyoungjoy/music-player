@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { CardListTitle } from '../components/common';
-import MusicCardItem from '../components/music/MusicCardItem';
-import MusicCardList from '../components/music/MusicCardList';
-import { ROUTER_PATH } from '../router/router';
+import { MusicCardItem, MusicCardList } from '../components/music';
+import { ROUTER_PATH } from '../router';
 
 import S from './Home.styled';
 

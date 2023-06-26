@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const S = {
+const S = {
   MusicList: styled.ul`
     display: flex;
     flex-direction: column;
@@ -8,3 +8,5 @@ export const S = {
     margin: 0;
   `,
 };
+
+export default S;

@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ErrorBoundary, { ErrorType } from '../components/ErrorBoundary';
 import { Home, NewRelease } from '../pages';
 
-import Layout from './layout/Layout';
+import { Layout } from './index';
 
 export const ROUTER_PATH = {
   HOME: '/',
