@@ -3,10 +3,9 @@ import React from 'react';
 import { AudioPlayer } from '../../hooks/useAudio';
 import { Music } from '../../types/music';
 import { formatStringDateToDottedType } from '../../utils';
+import { MusicMood, PlayToggleButton } from '../index';
 
 import S from './MusicItem.styled';
-
-import { MusicMood, PlayToggleButton } from './index';
 
 type Props = MusicItem & AudioPlayerPick;
 

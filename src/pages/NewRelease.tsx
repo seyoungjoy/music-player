@@ -1,6 +1,10 @@
-import { CardListTitle } from '../components/common';
+import {
+  MusicItem,
+  MusicList,
+  MusicPlayer,
+  CardListTitle,
+} from '../components';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { MusicItem, MusicList, MusicPlayer } from '../components/music';
 import Suspense from '../components/Suspense';
 import { useAudio, useMusic } from '../hooks';
 
