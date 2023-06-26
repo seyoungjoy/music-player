@@ -1,8 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import ErrorBoundary, { ErrorType } from '../components/ErrorBoundary';
-import { Home } from '../pages';
-import NewRelease from '../pages/NewRelease';
+import { Home, NewRelease } from '../pages';
 
 import Layout from './layout/Layout';
 
@@ -10,7 +9,7 @@ export const ROUTER_PATH = {
   HOME: '/',
   SEARCH: '/search',
   LIBRARY: '/library',
-  NewRelease: '/new-release',
+  NEW_RELEASE: '/new-release',
 };
 
 const error: ErrorType = {
@@ -32,7 +31,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTER_PATH.NewRelease,
+        path: ROUTER_PATH.NEW_RELEASE,
         element: <NewRelease />,
       },
     ],

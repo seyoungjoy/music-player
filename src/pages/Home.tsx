@@ -13,7 +13,7 @@ const Home = () => {
       <CardListTitle title="최신 음악" />
       {/*TODO: Mock data 교체*/}
       <MusicCardList>
-        <Link to={ROUTER_PATH.NewRelease}>
+        <Link to={ROUTER_PATH.NEW_RELEASE}>
           <MusicCardItem />
         </Link>
       </MusicCardList>

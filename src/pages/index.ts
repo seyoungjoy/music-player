@@ -1,2 +1,2 @@
 export { default as Home } from './Home';
-export { default as Chart } from './NewRelease';
+export { default as NewRelease } from './NewRelease';
