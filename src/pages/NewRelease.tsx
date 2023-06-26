@@ -10,7 +10,9 @@ const NewRelease = () => {
     <S.Container>
       <CardListTitle title="New Music" />
       <RetryErrorBoundary>
-        <Suspense fallback={<div>list loading...</div>}>
+        <Suspense
+          fallback={<div style={{ color: '#ffffff' }}>list loading...</div>}
+        >
           <MusicList />
         </Suspense>
       </RetryErrorBoundary>
