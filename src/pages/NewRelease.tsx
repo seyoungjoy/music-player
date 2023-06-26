@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import { MusicList, CardListTitle } from '../components';
+import RetryErrorBoundary from '../shared/RetryErrorBoundary';
 
 import S from './Home.styled';
 
@@ -8,9 +9,11 @@ const NewRelease = () => {
   return (
     <S.Container>
       <CardListTitle title="New Music" />
-      <Suspense fallback={<div>list loading...</div>}>
-        <MusicList />
-      </Suspense>
+      <RetryErrorBoundary>
+        <Suspense fallback={<div>list loading...</div>}>
+          <MusicList />
+        </Suspense>
+      </RetryErrorBoundary>
     </S.Container>
   );
 };

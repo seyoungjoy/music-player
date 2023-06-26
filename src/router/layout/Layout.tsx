@@ -1,5 +1,7 @@
+import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
+import RetryErrorBoundary from '../../shared/RetryErrorBoundary';
 import { ROUTER_PATH } from '../router';
 
 import S from './Layout.styled';
@@ -25,7 +27,11 @@ const Layout = () => {
         </S.Header>
 
         <S.Content>
-          <Outlet />
+          <RetryErrorBoundary>
+            <Suspense fallback={<div>loading...</div>}>
+              <Outlet />
+            </Suspense>
+          </RetryErrorBoundary>
         </S.Content>
       </S.Main>
     </S.Layout>
