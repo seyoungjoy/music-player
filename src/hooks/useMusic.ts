@@ -1,42 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
-import { ErrorType } from '../components/ErrorBoundary';
-import { fetchMusicList, MusicsResponse } from '../services';
+import { fetchMusicList } from '../services';
+
+import { queryKeys } from './constant/query';
 
 const useMusic = () => {
-  const [data, setData] = useState<MusicsResponse>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<ErrorType>({ isError: false });
+  const useMusicData = () => {
+    return useQuery(queryKeys.MUSIC_LIST, fetchMusicList);
+  };
 
-  useEffect(() => {
-    let isCancelled = false;
-    (async () => {
-      setIsLoading(true);
-      const [error, data] = await fetchMusicList();
-
-      if (isCancelled) {
-        return;
-      }
-
-      if (error) {
-        setIsLoading(false);
-        setError({ isError: true, errorInfo: error });
-        return;
-      }
-
-      setData(data);
-      setIsLoading(false);
-    })();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
+  const { data } = useMusicData();
 
   return {
     data,
-    isLoading,
-    error,
   };
 };
 
