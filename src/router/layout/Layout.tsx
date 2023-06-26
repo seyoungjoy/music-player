@@ -21,10 +21,6 @@ const Layout = () => {
         <S.Header>
           <S.Nav>
             <S.Logo>Youngs Music</S.Logo>
-            {/*<div>*/}
-            {/*  <S.Button>가입하기</S.Button>*/}
-            {/*  <S.Button>로그인하기</S.Button>*/}
-            {/*</div>*/}
           </S.Nav>
         </S.Header>
 
