@@ -1,7 +1,9 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { RouterProvider } from 'react-router-dom';
 
-import { router } from './router';
+import { router } from './router/router';
+
+// import { router } from './router';
 
 function App() {
   const queryClient = new QueryClient({
