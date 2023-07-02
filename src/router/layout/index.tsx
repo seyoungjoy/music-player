@@ -6,8 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 import { BACKGROUND } from '../../constants/color';
 import RetryErrorBoundary from '../../shared/RetryErrorBoundary';
-
-import { Header, SideNavigation, Container } from './components';
+import { Header, SideNavigation, Container } from '../components';
 
 const layoutCss = {
   layout: css({

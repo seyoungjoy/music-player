@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { Home, NewRelease } from '../pages';
 
-import Layout from './layout/Layout';
+import Layout from './layout';
 
 export const ROUTER_PATH = {
   HOME: '/',

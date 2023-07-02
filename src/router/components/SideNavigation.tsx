@@ -2,8 +2,8 @@
 
 import { css } from '@emotion/react';
 
-import { BACKGROUND, TEXT } from '../../../constants/color';
-import { ROUTER_PATH } from '../../router';
+import { BACKGROUND, TEXT } from '../../constants/color';
+import { ROUTER_PATH } from '../router';
 
 import SideNavigationLink from './SideNavigationLink';
 

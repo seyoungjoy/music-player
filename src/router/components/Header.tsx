@@ -2,7 +2,7 @@
 
 import { css } from '@emotion/react';
 
-import { TEXT } from '../../../constants/color';
+import { TEXT } from '../../constants/color';
 
 const headerCss = {
   header: css({
