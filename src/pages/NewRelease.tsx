@@ -3,11 +3,9 @@ import { Suspense } from 'react';
 import { MusicList, CardListTitle } from '../components';
 import RetryErrorBoundary from '../shared/RetryErrorBoundary';
 
-import S from './Home.styled';
-
 const NewRelease = () => {
   return (
-    <S.Container>
+    <div>
       <CardListTitle title="New Music" />
       <RetryErrorBoundary>
         <Suspense
@@ -16,7 +14,7 @@ const NewRelease = () => {
           <MusicList />
         </Suspense>
       </RetryErrorBoundary>
-    </S.Container>
+    </div>
   );
 };
 
