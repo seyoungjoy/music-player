@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { MusicCardItem, MusicCardList, CardListTitle } from '../components';
 import { ROUTER_PATH } from '../router/router';
 
-import S from './Home.styled';
-
 const Home = () => {
   return (
-    <S.Container>
+    <div>
       <CardListTitle title="최신 음악" />
       {/*TODO: Mock data 교체*/}
       <MusicCardList>
@@ -15,7 +13,7 @@ const Home = () => {
           <MusicCardItem />
         </Link>
       </MusicCardList>
-    </S.Container>
+    </div>
   );
 };
 

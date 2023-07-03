@@ -4,8 +4,6 @@ import PlayIcon from '../../assets/images/ic-small-fill-play-gray.png';
 import PauseIcon from '../../assets/images/ic-small-line-stop-gray.png';
 import { Spin } from '../common';
 
-import S, { ButtonSize } from './PlayToggleButton.styled';
-
 type Props = {
   playing: boolean;
   loading?: boolean;
@@ -14,12 +12,25 @@ type Props = {
   size?: ButtonSize;
 };
 
+type ButtonSize = 'sm' | 'md';
+
+const sizeStyles = {
+  sm: {
+    width: '20px',
+    height: '20px',
+  },
+  md: {
+    width: '30px',
+    height: '30px',
+  },
+};
+
 const PlayToggleButton = ({
   playing,
   onClick,
   loading,
   disabled,
-  size,
+  size = 'sm',
 }: Props) => {
   if (loading) {
     return <Spin />;
@@ -28,14 +39,25 @@ const PlayToggleButton = ({
   const imgSrc = playing ? PauseIcon : PlayIcon;
   const imgAlt = playing ? '정지' : '재생';
   return (
-    <S.Button
+    <button
       type="button"
       onClick={onClick}
       disabled={disabled ?? false}
-      size={size ?? 'small'}
+      css={{
+        position: 'relative',
+        cursor: 'pointer',
+        ...sizeStyles[size],
+        '& > img': {
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate3d(-50%, -50%, 0)',
+          height: '80%',
+        },
+      }}
     >
       <img src={imgSrc} alt={imgAlt} />
-    </S.Button>
+    </button>
   );
 };
 

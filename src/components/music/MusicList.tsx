@@ -1,9 +1,14 @@
-import { memo } from 'react';
+import { css } from '@emotion/react';
+import React from 'react';
 
 import { useAudio, useMusic } from '../../hooks';
 import { MusicItem, MusicPlayer } from '../index';
 
-import S from './MusicList.styled';
+const musicListCss = css({
+  display: 'flex',
+  flexDirection: 'column',
+  margin: 0,
+});
 
 const MusicList = () => {
   const { data } = useMusic();
@@ -18,7 +23,7 @@ const MusicList = () => {
   } = audioState;
   return (
     <>
-      <S.MusicList>
+      <ul css={musicListCss}>
         {data?.items.map((item) => (
           <MusicItem
             key={item.id}
@@ -31,10 +36,10 @@ const MusicList = () => {
             pauseAudio={pauseAudio}
           />
         ))}
-      </S.MusicList>
+      </ul>
       <MusicPlayer {...audioState} />
     </>
   );
 };
 
-export default memo(MusicList);
+export default React.memo(MusicList);

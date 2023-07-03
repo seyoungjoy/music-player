@@ -1,9 +1,10 @@
+import { css } from '@emotion/react';
+
+import { BACKGROUND, COLOR, TEXT } from '../../constants/color';
 import { AudioPlayer } from '../../hooks/useAudio';
 import { HiddenLabel } from '../../styles/common/common';
 import { formatSecondsToTime } from '../../utils';
 import PlayToggleButton from '../music/PlayToggleButton';
-
-import S from './MusicPlayer.styled';
 
 type Props = AudioPlayer;
 
@@ -17,24 +18,53 @@ const MusicPlayer = ({
   handleRangeChange,
   togglePlayPause,
 }: Props) => {
+  const musicPlayerCss = {
+    wrapper: css({
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      height: '80px',
+      backgroundColor: BACKGROUND.SECONDARY,
+      borderTop: `1px solid ${COLOR.BORDER}`,
+      transform: playerVisible ? 'translate3D(0,0,0)' : 'translate3D(0,100%,0)',
+      transition: 'transform 200ms ease',
+      color: TEXT.PRIMARY,
+    }),
+    control: css({
+      maxWidth: '1020px',
+      height: '100%',
+      margin: '0 auto',
+      padding: '0 80px',
+      display: 'flex',
+      alignItems: 'center',
+    }),
+    title: css({
+      margin: '0 40px',
+    }),
+    progressBar: css({
+      display: 'flex',
+      alignItems: 'center',
+    }),
+    slider: css({
+      margin: '0 10px',
+    }),
+  };
+
   return (
-    <S.MusicPlayerWrapper visible={playerVisible}>
-      <S.MusicPlayerControl>
+    <div css={musicPlayerCss.wrapper}>
+      <div css={musicPlayerCss.control}>
         <PlayToggleButton
           playing={playing}
           onClick={togglePlayPause}
           loading={loading}
-          size="large"
+          size="md"
         />
 
-        <S.MusicPlayerTitle>{playingMusic.title}</S.MusicPlayerTitle>
-
-        <S.MusicPlayerProgressBar>
-          <S.MusicPlayerCurrentTime>
-            {formatSecondsToTime(audioRef.current?.currentTime)}
-          </S.MusicPlayerCurrentTime>
-
-          <S.MusicPlayerSlider>
+        <div css={musicPlayerCss.title}>{playingMusic.title}</div>
+        <div css={musicPlayerCss.progressBar}>
+          <span>{formatSecondsToTime(audioRef.current?.currentTime)}</span>
+          <div css={musicPlayerCss.slider}>
             <HiddenLabel htmlFor="range">progress bar</HiddenLabel>
             <input
               type="range"
@@ -43,15 +73,13 @@ const MusicPlayer = ({
               value={currentTime}
               onChange={handleRangeChange}
             />
-          </S.MusicPlayerSlider>
-          <S.MusicPlayerDuration>
-            {formatSecondsToTime(audioRef.current?.duration)}
-          </S.MusicPlayerDuration>
-        </S.MusicPlayerProgressBar>
+          </div>
+          <span>{formatSecondsToTime(audioRef.current?.duration)}</span>
+        </div>
 
         <audio ref={audioRef} />
-      </S.MusicPlayerControl>
-    </S.MusicPlayerWrapper>
+      </div>
+    </div>
   );
 };
 
