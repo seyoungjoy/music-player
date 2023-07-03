@@ -1,9 +1,16 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from '@emotion/react';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import S from './MusicCardList.styled';
+const musicCardListCss = css({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(130px, auto))',
+  gap: '10px',
+});
 
 const MusicCardList = ({ children }: PropsWithChildren<ReactNode>) => {
-  return <S.Wrapper>{children}</S.Wrapper>;
+  return <ul css={musicCardListCss}>{children}</ul>;
 };
 
 export default MusicCardList;
