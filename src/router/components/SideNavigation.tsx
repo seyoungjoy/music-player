@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 
 import { BACKGROUND, TEXT } from '../../constants/color';

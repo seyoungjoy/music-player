@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';

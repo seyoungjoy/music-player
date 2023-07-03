@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 
 import MOCK_THUMB from '../../assets/images/mock_thumbnail.jpg';

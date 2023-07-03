@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React from 'react';
 
 import PlayIcon from '../../assets/images/ic-small-fill-play-gray.png';
