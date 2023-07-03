@@ -17,7 +17,6 @@
   },
   "plugins": ["@typescript-eslint", "react", "import", "json-format"],
   "rules": {
-    "prettier/prettier": ["warn", { "endOfLine": "auto", "tabWidth": 2 }],
     "react/react-in-jsx-scope": "off",
     "import/order": [
       "error",

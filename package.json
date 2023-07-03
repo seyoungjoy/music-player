@@ -7,8 +7,7 @@
     "build": "craco build",
     "eject": "craco eject",
     "test": "craco test",
-    "lint": "eslint . --fix",
-    "prettier": "prettier . --write"
+    "lint": "eslint . --fix"
   },
   "browserslist": {
     "production": [
@@ -30,7 +29,6 @@
   },
   "dependencies": {
     "@craco/craco": "^7.1.0",
-    "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "axios": "^0.26.0",
