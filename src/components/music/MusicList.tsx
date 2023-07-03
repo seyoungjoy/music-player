@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { memo } from 'react';
+import React from 'react';
 
 import { useAudio, useMusic } from '../../hooks';
 import { MusicItem, MusicPlayer } from '../index';
@@ -42,4 +42,4 @@ const MusicList = () => {
   );
 };
 
-export default memo(MusicList);
+export default React.memo(MusicList);
