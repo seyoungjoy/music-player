@@ -14,8 +14,7 @@ export default function createMockServer() {
 
     routes() {
       this.urlPrefix = 'http://localhost:8000';
-      this.namespace = 'musics';
-      this.get('', ({ db }) => {
+      this.get('/musics', ({ db }) => {
         return {
           total: db.musics.length,
           items: db.musics.map((data) => ({
@@ -28,7 +27,7 @@ export default function createMockServer() {
         };
       });
       this.get(
-        '/:musicId',
+        'musics/:musicId',
         ({ db }, request) => {
           const id = request.params.musicId;
           return {
@@ -37,6 +36,17 @@ export default function createMockServer() {
         },
         { timing: 2000 },
       );
+      this.get('/albums', ({ db }) => {
+        return {
+          total: db.albums.length,
+          items: db.albums.map((data) => ({
+            id: data.id,
+            title: data.title,
+            moods: data.moods,
+            imgUrl: data.imgUrl,
+          })),
+        };
+      });
     },
   });
 }
