@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
-import MOCK_THUMB from '../../assets/images/mock_thumbnail.jpg';
 import { BACKGROUND, TEXT } from '../../constants/color';
+import { ROUTER_PATH } from '../../router/router';
+import { Album } from '../../types/album';
 
 const musicCardItemCss = {
   cardWrapper: css({
@@ -39,16 +41,16 @@ const musicCardItemCss = {
   }),
 };
 
-const MusicCardItem = () => {
+const MusicCardItem = ({ title, moods, imgUrl }: Album) => {
   return (
     <li css={musicCardItemCss.cardWrapper}>
-      <div css={musicCardItemCss.imageWrapper}>
-        <img src={MOCK_THUMB} alt="mock-thumbnail" />
-      </div>
-      <strong css={musicCardItemCss.title}>New Music</strong>
-      <span css={musicCardItemCss.description}>
-        매주 업데이트 되는 국내의 신곡들을 만나보세요.
-      </span>
+      <Link to={ROUTER_PATH.PLAYLIST}>
+        <div css={musicCardItemCss.imageWrapper}>
+          <img src={imgUrl} alt={title} />
+        </div>
+        <strong css={musicCardItemCss.title}>{title}</strong>
+        <span css={musicCardItemCss.description}>{moods}</span>
+      </Link>
     </li>
   );
 };

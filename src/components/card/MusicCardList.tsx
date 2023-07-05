@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
-import { PropsWithChildren, ReactNode } from 'react';
+
+import { useAlbum } from '../../hooks';
+import { MusicCardItem } from '../index';
 
 const musicCardListCss = css({
   display: 'grid',
@@ -7,8 +9,15 @@ const musicCardListCss = css({
   gap: '10px',
 });
 
-const MusicCardList = ({ children }: PropsWithChildren<ReactNode>) => {
-  return <ul css={musicCardListCss}>{children}</ul>;
+const MusicCardList = () => {
+  const { data } = useAlbum();
+  return (
+    <ul css={musicCardListCss}>
+      {data?.items.map((item) => (
+        <MusicCardItem key={item.id} {...item} />
+      ))}
+    </ul>
+  );
 };
 
 export default MusicCardList;
