@@ -6,7 +6,7 @@ import createMockServer from './mockServer/createMockServer';
 
 import './styles/index.css';
 
-createMockServer();
+// createMockServer();
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(

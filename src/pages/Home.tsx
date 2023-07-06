@@ -1,14 +1,9 @@
-import { Suspense } from 'react';
-
-import { MusicCardList, CardListTitle } from '../components';
-
+import './index.css';
+import TodoList from './TodoList';
 const Home = () => {
   return (
-    <div>
-      <CardListTitle title="앨범 리스트" />
-      <Suspense fallback={<div>loading...</div>}>
-        <MusicCardList />
-      </Suspense>
+    <div className="App">
+      <TodoList />
     </div>
   );
 };
