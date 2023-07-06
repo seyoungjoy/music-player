@@ -6,13 +6,17 @@ import { queryKeys } from './constant/query';
 
 const useAlbum = () => {
   const useAlbumData = () => {
-    return useQuery(queryKeys.ALBUM_LIST, fetchAlbumList);
+    return useQuery(queryKeys.ALBUM_LIST, fetchAlbumList, {
+      useErrorBoundary: false,
+    });
   };
 
-  const { data } = useAlbumData();
+  const { data, isError, error } = useAlbumData();
 
   return {
     data,
+    isError,
+    error,
   };
 };
 

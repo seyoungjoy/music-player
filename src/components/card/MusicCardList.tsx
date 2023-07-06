@@ -10,14 +10,19 @@ const musicCardListCss = css({
 });
 
 const MusicCardList = () => {
-  const { data } = useAlbum();
-  return (
-    <ul css={musicCardListCss}>
-      {data?.items.map((item) => (
+  const { data, isError } = useAlbum();
+
+  const renderMusicItem = () => {
+    if (isError) {
+      return <div>데이터 요청에 실패했습니다.</div>;
+    } else {
+      return data?.items.map((item) => (
         <MusicCardItem key={item.id} {...item} />
-      ))}
-    </ul>
-  );
+      ));
+    }
+  };
+
+  return <ul css={musicCardListCss}>{renderMusicItem()}</ul>;
 };
 
 export default MusicCardList;
