@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header css={headerCss.header}>
       <nav css={headerCss.nav}>
-        <div css={headerCss.logo}>Youngs Music</div>
+        <div css={headerCss.logo}>YOUNGS BGM</div>
       </nav>
     </header>
   );

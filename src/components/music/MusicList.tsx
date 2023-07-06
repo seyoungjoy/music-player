@@ -1,8 +1,12 @@
 import { css } from '@emotion/react';
 import React from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 
-import { useAudio, useMusic } from '../../hooks';
-import { MusicItem, MusicPlayer } from '../index';
+import { useAudio } from '../../hooks';
+import { queryKeys } from '../../hooks/constant/query';
+import { fetchPlaylist } from '../../services';
+import { CardListTitle, MusicItem, MusicPlayer } from '../index';
 
 const musicListCss = css({
   display: 'flex',
@@ -11,7 +15,18 @@ const musicListCss = css({
 });
 
 const MusicList = () => {
-  const { data } = useMusic();
+  const params = useParams();
+  const playlistId = params.id ?? '';
+  const { data, isError } = useQuery(
+    [queryKeys.PLAYLIST, playlistId],
+    () => fetchPlaylist(playlistId),
+    {
+      enabled: !!playlistId,
+      retry: 0,
+      useErrorBoundary: false,
+    },
+  );
+
   const audioState = useAudio();
   const {
     playing,
@@ -21,8 +36,11 @@ const MusicList = () => {
     playAudio,
     pauseAudio,
   } = audioState;
+
   return (
     <>
+      <CardListTitle title="New Music" />
+      {isError && <div>존재하지 않는 플레이리스트 입니다.</div>}
       <ul css={musicListCss}>
         {data?.items.map((item) => (
           <MusicItem

@@ -36,6 +36,12 @@ export default function createMockServer() {
         },
         { timing: 2000 },
       );
+      this.get('playlists/:playlistId', ({ db }, request) => {
+        const id = request.params.playlistId;
+        return {
+          items: db.playlists.findBy({ id }).musics,
+        };
+      });
       this.get('/albums', ({ db }) => {
         return {
           total: db.albums.length,

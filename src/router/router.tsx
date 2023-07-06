@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Home, NewRelease } from '../pages';
+import { Home, PlayList } from '../pages';
 
 import Layout from './layout';
 
@@ -8,7 +8,7 @@ export const ROUTER_PATH = {
   HOME: '/',
   SEARCH: '/search',
   LIBRARY: '/library',
-  NEW_RELEASE: '/new-release',
+  PLAYLIST: '/playlist',
 };
 
 export const router = createBrowserRouter([
@@ -21,8 +21,12 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTER_PATH.NEW_RELEASE,
-        element: <NewRelease />,
+        path: `${ROUTER_PATH.PLAYLIST}/:id`,
+        element: <PlayList />,
+      },
+      {
+        path: '*',
+        element: <div>NotFound</div>,
       },
     ],
   },

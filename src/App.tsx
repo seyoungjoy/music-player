@@ -10,6 +10,7 @@ function App() {
       queries: {
         retry: 0,
         suspense: true,
+        useErrorBoundary: false,
       },
     },
   });

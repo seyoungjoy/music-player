@@ -3,7 +3,6 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { BACKGROUND } from '../../constants/color';
-import RetryErrorBoundary from '../../shared/RetryErrorBoundary';
 import { Header, SideNavigation, Container } from '../components';
 
 const layoutCss = {
@@ -26,11 +25,9 @@ const Layout = () => {
       <main css={layoutCss.main}>
         <Header />
         <Container>
-          <RetryErrorBoundary>
-            <Suspense fallback={<div>loading...</div>}>
-              <Outlet />
-            </Suspense>
-          </RetryErrorBoundary>
+          <Suspense fallback={<div>loading...</div>}>
+            <Outlet />
+          </Suspense>
         </Container>
       </main>
     </div>

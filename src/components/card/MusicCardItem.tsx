@@ -41,10 +41,10 @@ const musicCardItemCss = {
   }),
 };
 
-const MusicCardItem = ({ title, moods, imgUrl }: Album) => {
+const MusicCardItem = ({ title, moods, imgUrl, id }: Album) => {
   return (
     <li css={musicCardItemCss.cardWrapper}>
-      <Link to={ROUTER_PATH.PLAYLIST}>
+      <Link to={`${ROUTER_PATH.PLAYLIST}/${id}`}>
         <div css={musicCardItemCss.imageWrapper}>
           <img src={imgUrl} alt={title} />
         </div>
